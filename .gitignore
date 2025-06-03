@@ -1,0 +1,8 @@
+# Fichiers sensibles
+assets/php/config.php
+
+# Node modules (si tu utilises Node.js)
+node_modules/
+
+# Autres fichiers à ignorer
+.DS_Store

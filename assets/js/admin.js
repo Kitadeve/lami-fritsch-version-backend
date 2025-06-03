@@ -44,29 +44,12 @@ window.addEventListener("DOMContentLoaded", function () {
 const reload = document.querySelector("#reload")
 
 function getCat() {
-
   const chats = document.querySelector(".chats");
 
-  const headers = new Headers({
-  "Content-type": "application/json",
-  "x-api-key": "live_PeZJ564McjPA1Z5n6JJ62FmBu8ByoVb5LnYqOlblTbLZZXxnKQYvxNmJs7MC6JBG"
-  });
-
-  const requestOptions = {
-    method: "GET",
-    headers: headers,
-    redirect: "follow"
-  };
-
-  fetch("https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1", requestOptions)
+  fetch("./assets/php/cat-proxy.php")
     .then(response => response.json())
     .then(result => {
-
-      console.log(result);
-      
-
       chats.innerHTML = "";
-
       const catData = result[0];
       const img = document.createElement("img");
       img.src = catData.url;

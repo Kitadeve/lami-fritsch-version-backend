@@ -1,0 +1,333 @@
+.intro{
+  display: flex;
+  padding: 0px 20px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; 
+} 
+
+h1 {
+  align-self: center;
+  margin-bottom: 16px;
+}
+
+h2 {
+  align-self: flex-start;
+}
+
+img.img-desktop,
+img.img-mobile {
+  box-shadow: var(--box-shadow);
+}
+
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 16px; /* Espace entre les images */
+  max-width: 100%;
+  padding: 0 20px;
+}
+
+.photo-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1.5; 
+}
+
+.photo-container img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.formulaire {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 20px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type=number],
+input[type=email],
+input[type=tel],
+input[type=datetime-local],
+select,
+textarea {
+  width: 100%;
+  box-shadow: var(--box-shadow);
+  border: 0px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-size: 1em;
+  background: white;
+}
+
+/* pour la partie expérimental en php */
+/* 
+input[type="password"] {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  box-shadow: var(--box-shadow);
+  border: 0px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+} */
+
+.nom-prenom {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+ 
+.nom,
+.prenom {
+  width: 100%;
+}
+
+.elements {
+ display: flex;
+ flex-direction: column;
+ gap: 16px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 3px solid var(--bleu-fritsch);
+  box-shadow: 0 0 0;
+}
+
+textarea {
+  box-shadow: var(--box-shadow);
+  border: 0px;
+  font-size: var(--paragraphes-mobile-font-size);
+  resize: none;
+}
+
+.news {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
+input[type="checkbox"] {
+  appearance: none; 
+  width: 25px;
+  height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+  border: 2px solid var(--bleu-fritsch);
+  border-radius: 10px; 
+  background-color: white; 
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+
+input[type="checkbox"]:checked {
+  background-color: var(--bleu-fritsch); 
+  border-color: var(--bleu-fritsch);
+}
+
+
+input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cta {
+  margin-top: 8px;
+  align-self: center;
+}
+
+.rgpd {
+  font-size: 0.8125em;
+  color: #454545;
+  align-self: flex-start;
+}
+
+.validation-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 24px;
+  gap: 16px;
+  position: fixed;
+  max-width: 50%;
+  height: auto;
+  border-radius: 10px;
+  background-color: rgba(51, 66, 100, 0.8);
+  box-shadow: var(--box-shadow);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 100;
+  color: white;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+  transition: all 0.5s ease-out;
+}
+
+/* Erreur : rouge vif + glow + shake */
+.validation-error.validation-card {
+  border-color: #ff3b3b;
+  box-shadow: 0 0 24px 8px #ff3b3b, 0 0 0 8px #fff0;
+  animation: shake 0.4s;
+}
+
+/* Succès : vert lumineux + glow + pulse */
+.validation-succes.validation-card {
+  border-color: #00c853;
+  animation: pulse 1s 0.5s;
+  box-shadow: 0 0 24px 8px #00c853, 0 0 0 8px #fff0;
+}
+
+/* Animation shake pour l'erreur */
+@keyframes shake {
+  0% { transform: translate(-50%, -50%) translateX(0); }
+  20% { transform: translate(-50%, -50%) translateX(-10px); }
+  40% { transform: translate(-50%, -50%) translateX(10px); }
+  60% { transform: translate(-50%, -50%) translateX(-8px); }
+  80% { transform: translate(-50%, -50%) translateX(8px); }
+  100% { transform: translate(-50%, -50%) translateX(0); }
+}
+
+/* Animation pulse pour le succès */
+@keyframes pulse {
+  0% { box-shadow: 0 0 24px 8px #00c853, 0 0 0 8px #fff0; }
+  50% { box-shadow: 0 0 24px 4px #00c85388, 0 0 0 8px #fff0; }
+  100% { box-shadow: 0 0 24px 8px #00c853, 0 0 0 8px #fff0; }
+}
+
+.validation-card button {
+  padding: 12px;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--cta);
+  font-style: bold;
+}
+
+.active .validation-card{
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.5s ease-out;
+}
+
+
+.validation {
+  text-align: center;
+}
+
+
+
+.map {
+    width: 100%;
+    padding: 20px;
+}
+
+/*********************** animations  *********************/
+.un {
+  animation: slideInFromBottom 0.7s ease-in forwards;
+}
+
+.deux {
+  opacity: 0;
+  animation: slideInFromBottom 0.7s ease-in 0.5s forwards;
+}
+
+.trois {
+  opacity: 0;
+  animation: slideInFromBottom 0.7s ease-in 1s forwards;
+}
+
+.quatre {
+  opacity: 0;
+  animation: slideInFromBottom 0.7s ease-in 1.5s forwards;
+}
+
+
+@media screen and (min-width: 768px) {
+
+  form{
+    width: 100%;
+    max-width: 80%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  main{
+    gap: 64px;
+  }
+
+  .intro {
+    max-width: 80%;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px; 
+    max-width: 80%;
+  }
+  
+  .photo-container {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    aspect-ratio: 3 / 2; 
+  }
+
+  form {
+    width: 100%;
+    max-width: 50%;
+    margin: auto;
+  }
+
+  .map {
+    width: 50%;
+    padding: 20px;
+}
+
+}
+
+@media screen and (min-width: 1400px) {
+  form {
+    width: 100%;
+    max-width: 33%;
+    margin: auto;
+  }
+
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,<svg width='16' height='16' fill='gray' xmlns='http://www.w3.org/2000/svg'><path d='M4 6l4 4 4-4'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+  cursor: pointer;
+}

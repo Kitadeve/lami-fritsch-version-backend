@@ -1,0 +1,180 @@
+main{
+  align-items: center;
+}
+
+h1 {
+  align-self: center;
+}
+
+h2 {
+  margin: 16px;
+}
+
+.resa {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 600px;
+}
+
+.intro {
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px; 
+}
+
+span.desktop {
+  display: none;
+}
+
+.plugin-placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin: 0 20px;
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+label {
+  display: none;
+}
+
+input {
+  border-top: none;
+  width: 100%;
+  border-radius: 10px;
+  padding: 5px 10px;
+}
+
+h2 {
+  color:black;
+  text-align: center;
+}
+
+p.condition,
+p.plugin-info {
+  color: #313131;
+}
+
+.info-plugin {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+}
+
+.dash {
+  align-self: stretch;
+  width: 100%;
+  border-color: #313131;
+}
+
+.plugin-cta {
+  color:  black;
+  background-color: white;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.plugin-cta:hover {
+  transform: none;
+}
+
+.carousel {
+  width: 80vw;
+  height: 50vw;
+  max-width: 800px;
+  max-height: 500px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  box-shadow:var(--box-shadow);
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  animation: slide 8s ease-out infinite;
+  background-color: var(--bleu-pale);
+}
+
+.carousel:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+.carousel-track img {
+  width: 100%;
+  align-self: center;
+  height: auto;
+  object-fit: cover;
+  flex-shrink: 0;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Animation pour faire défiler les images */
+@keyframes slide {
+  0%    { transform: translateX(0); }
+  25%   { transform: translateX(0); }      /* arrêt image 1 */
+  30%   { transform: translateX(-100%); }  /* transition rapide vers image 2 */
+  60%   { transform: translateX(-100%); }  /* arrêt image 2 */
+  65%   { transform: translateX(-200%); }  /* transition rapide vers image 3 */
+  90%   { transform: translateX(-200%); }  /* arrêt image 3 */
+  95%   { transform: translateX(-300%); }  /* transition rapide vers la copie de la 1 */
+  98%   { transform: translateX(-300%); }  /* juste le temps du glissement */
+  100%  { transform: translateX(-300%); }  /* reste sur la copie, puis reset */
+}
+
+
+@media screen and (min-width: 1024px) {
+  .resa {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 100%;
+  }
+
+  .intro {
+   align-self: center;
+  }
+
+  span.mobile {
+    display: none;
+  }
+
+  span.desktop {
+    display: inline;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .resa {
+    max-width: 50%;
+    margin: auto;
+  }
+}

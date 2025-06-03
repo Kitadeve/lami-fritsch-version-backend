@@ -1,0 +1,19 @@
+{
+  "platsDuJour": [
+    {
+      "jour": "Mercredi",
+      "entree": "Quiche Maison",
+      "plat": "Escalope de poulet à l'ail des ours Pommes de terre rôties au four"
+    },
+    {
+      "jour": "Jeudi",
+      "entree": "Tomate monégasque",
+      "plat": "Steak haché à cheval jus corsé Frites maison et salade"
+    },
+    {
+      "jour": "Vendredi",
+      "entree": "Petite salade frisée aux lardons",
+      "plat": "Piccata de poisson Spaghettis à la napolitaine"
+    }
+  ]
+}

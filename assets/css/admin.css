@@ -1,0 +1,39 @@
+main {
+    margin-bottom: 34px;
+}
+
+h1 {
+    text-align: center;
+    font-family: var(--main-font-family);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+button {
+    margin-top: 16px;
+}
+
+.cats {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    justify-content: center;
+    align-items: center;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+}
+
+.cats img {
+    max-width: 40%;
+}

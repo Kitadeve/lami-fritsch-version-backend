@@ -1,0 +1,55 @@
+.legale {
+    display: flex;
+    flex-direction: column;
+    margin: 20px
+  }
+  
+  .legale h1 {
+    font-family: var(--main-font-family);
+    margin-bottom: 40px;
+  }
+  
+  .legale h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .legale p {
+    margin: 10px 0px;
+  }
+  
+  .legale li {
+    padding: 2px;
+  }
+  
+  .legale span {
+    font-weight: bold;
+  }
+  
+
+  .legale ul {
+    font-size: var(--paragraphes-mobile-font-size);
+    list-style-type: disc;
+    margin-left: 40px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .legale{
+      margin: 60px;
+    }
+  }
+    /* desktop */
+
+@media screen and (min-width: 1024px) {
+  .legale {
+    margin: 0 100px;
+  }
+
+  .legale ul{
+    font-size: var(--paragraphes-font-size);
+    list-style-type: disc;
+    margin-left: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+}

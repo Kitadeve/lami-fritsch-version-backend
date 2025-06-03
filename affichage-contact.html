@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/css/styleguide.css">
+        <link rel="stylesheet" href="./assets/css/globals.css">
+        <link rel="icon" type="image/x-icon" href="./assets/icons/Favicon.svg">
+        <title>Affichage résultat formulaire</title>
+    </head>
+    <body>
+        <main>
+        <h2>Messages enregistrés</h2>
+        <ul id="messageList"></ul>
+        <button id="reset" type="button">Vider les messages</button>
+    </main>
+        <style>
+            main {
+                margin: 20px;
+                display: flex;
+                min-height: 80vh;
+                
+            }
+
+            #messageList {
+                display: flex;
+                align-self: flex-start;
+                flex-direction: column;
+                gap: 32px;
+                
+            }
+
+            #messageList li{
+                justify-self: flex-start;
+                line-height: 1.2em;
+            }
+
+            button {
+                padding: 16px 8px;
+                border-radius: 10px;
+                box-shadow: var(--box-shadow);
+                background-color: var(--cta);
+                color: white;
+                align-self: flex-start;
+            }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+            const messageList = document.getElementById('messageList');
+            const messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
+
+            messages.forEach(msg => {
+                const li = document.createElement('li');
+                // const accepteNewsletter = (msg.check === true) ? "Oui" : "Non";
+                let accepteNewsletter = "Non"
+                    if (msg.check === true) {
+                        accepteNewsletter ="Oui"
+                    }
+                    
+                li.innerHTML = `Date et heure de réservation : ${msg.dateTime}<br>
+                                    Nom de famille : ${msg.lastName}<br>
+                                    Prénom : ${msg.firstName}<br> 
+                                    Adresse e-mail : ${msg.email}<br>
+                                    Type d'événement : ${msg.eventType}<br> 
+                                    Message : ${msg.message}<br>
+                                    Accepte la newsletter : ${accepteNewsletter}`;
+                messageList.appendChild(li);
+            });
+                document.getElementById("reset").addEventListener("click", () => {
+                    localStorage.removeItem("contactMessages")
+                    location.reload()
+                })
+                // if (messages.length >=5) {
+                //     localStorage.clear()
+                // }
+                console.log(messages.length);
+            });
+        </script>
+        <script src="./assets/js/global.js"></script>
+        <script src="./assets/js/partials.js"></script>
+    </body>
+</html>

@@ -1,0 +1,304 @@
+  /************** animation au chargement *****************/
+
+h1 {
+  animation: slideInFromLeft 1s ease-in;
+} 
+
+/****************** animation gérée en JS  ****************/
+
+
+  .plats-du-jour h2,
+  .plats-du-jour span,
+  .card-jour,
+  .card-plats {
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .plats-du-jour h2.non-visible,
+  .plats-du-jour span.non-visible,
+  .card-jour.non-visible,
+  .card-plats.non-visible {
+    opacity: 0;
+    /* transform: translateY(0);  */
+  }
+  
+
+
+/************ Plats du jour *************/
+
+
+.plats-du-jour h2 {
+  margin-bottom: 16px;
+}
+
+.centre {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 20px;
+  gap: 24px;
+  flex: 1;
+  color: white;
+  text-align: center;
+  background-color: #334264f2;
+}
+
+.plats-du-jour,
+.carte-suggestions {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-image: url("../img/bg-carte-et-menus.jpg");
+  background-size: cover;
+  background-position: 50% 50%;
+  box-shadow: var(--box-shadow);
+}
+
+.plats-du-jour .bord,
+.carte-suggestions .bord {
+  width: 20px;
+  background-color: #334264f2;
+}
+
+.plats-du-jour span {
+  display: block;
+  padding: 4px;
+}
+
+.cards-pdj,
+.cards-plats-suggestions {
+  font-family: var(--elements-menu-font-family);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+}
+
+.card-jour {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-self: stretch;
+} 
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.jour {
+  font-size: var(--carte-jour-mobile-font-size);
+  font-weight: var(--h3-font-weight);
+}
+
+.entree,
+.plat {
+  padding: 8px 0;
+  font-family: var(--elements-menu-font-family);
+  font-size: var(--elements-menu-mobile-font-size);
+  align-self: stretch;
+}
+
+.trait {
+  width: 13px;
+  height: 1px;
+  background-color:white;
+}
+
+
+/********************** plats et suggestions *****************************/
+
+
+.carte-suggestions h3 {
+  text-align: left;
+}
+
+.card-plats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  text-align: left;
+}
+.card-plats .plat {
+  padding: 0;
+}
+
+.trait-prix {
+  display: flex;
+  padding-left: 15px;
+  align-items: flex-end;
+  gap: 10px;
+  width: 100%;
+  flex: 0 0 auto;
+  padding-top: 8px;
+}
+
+.trait-prix p {
+  line-height: 1em;
+}
+
+.trait-plats {
+  flex: 1;
+  flex-grow: 1;
+  height: 1px;
+  border: 1px dashed;
+  border-color: white;
+}
+
+.description {
+  font-family: var(--main-font-family);
+  font-size: var(--description-menu-mobile-font-size);
+}
+
+p.sides {
+  text-align: left;
+  font-family: var(--main-font-family);
+  font-size: 12px;
+}
+
+.cta {
+  align-self: center;
+}
+
+.filtre{
+  display: none;    /* pour empécher l'affichage des titres de sections de carte en mode filtre */
+}
+
+.plats-filtre.hide,
+.tartes-flambees.hide, /*pour cacher les sections non active en js */
+.desserts.hide {
+  display: none;
+}
+
+/*********************************** tablettes *****************************/
+
+
+@media screen and (min-width:768px) {
+
+  .description {
+    padding-top: 4px;
+  }
+
+}
+
+/*********************************** desktop *****************************/
+
+@media screen and (min-width: 1024px) {
+
+/* animation en css pour palier au manque de js (pas pertinent et génant, a cause des filtres) */
+ 
+/* .plats-du-jour h2 {
+  opacity: 0;
+  animation: appear 2s ease-out 1s forwards;
+}
+
+.plats-du-jour span {
+  opacity: 0;
+  animation: appear 2s ease-out 1s forwards;
+}
+
+.plats-du-jour .jour-un {
+  opacity: 0;
+  animation: appear 2s ease-out 1.5s forwards;
+}
+
+.plats-du-jour .jour-deux {
+  opacity: 0;
+  animation: appear 2s ease-out 2s forwards;
+}
+
+.plats-du-jour .jour-trois {
+  opacity: 0;
+  animation: appear 2s ease-out 2.5s forwards;
+} */
+
+ .mobile {
+  display: none;   /*pour empécher l'affichage des titres de section de carte sans filtre*/
+  }
+
+  .filtre {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  align-self: stretch;
+}
+
+  /* .bord{
+    display: none;
+  } */
+
+  main {
+    margin: auto 200px;
+  }
+
+  .centre{
+    width: 100%;
+    padding: 32px 64px;
+    
+  }
+
+  .centre h2 {
+  text-align: center;
+  }
+ 
+ .filtre button {
+  /* Reset du style natif du bouton */
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: inherit;
+  /* Hérite du style du parent (ici, le h3 ou la classe filtre) */
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  /* Supprime l’apparence bouton sur certains navigateurs */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  }
+  
+  .filtre button:hover {
+    text-decoration: underline;
+  }
+  
+  .filtre button.active {
+    text-decoration: underline;
+    font-weight: bold; 
+  }
+
+  .filtre button:focus-visible {
+    outline: 2px solid white;
+    border: 3px solid var(--cta);
+  }
+   
+  .plats-filtre,
+  .tartes-flambees,
+  .desserts{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    align-self: stretch;
+  }
+}  
+
+@media screen and (min-width: 1400px) {
+
+  .plats-du-jour,
+  .carte-suggestions {
+
+    margin: auto 200px;
+    width: 60%;
+  }
+}

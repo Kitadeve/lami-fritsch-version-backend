@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Réservations – L'ami Fritsch</title>
+    <meta name="description" content="Réservez votre table jusqu’à 15 personnes à l’Ami Fritsch et profitez d’un moment convivial autour de plats typiques alsaciens.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/Favicon.svg">
+    <link rel="stylesheet" href="./assets/css/styleguide.css">
+    <link rel="stylesheet" href="./assets/css/globals.css">
+    <link rel="stylesheet" href="./assets/css/reservations.css">
+</head>
+
+  <body>
+    
+        <!----------------------- header -------------------------------------->
+
+    <main>
+
+      <h1>Réservations</h1>
+
+      <section class="resa">
+        <div class="intro">
+          <p>
+            Pour votre réservation, merci d’utiliser le formulaire <span class="mobile">ci-dessous</span><span class="desktop">ci-contre</span>.
+          </p>
+          <p>
+            Pour vos événements, ou groupe de plus de 15 personnes, 
+            merci de vous diriger vers la page “groupe”.
+          </p>
+        </div>
+
+        <div class="plugin-placeholder">
+          <div class="header">
+            <h2>L'ami Fritsch</h2>
+            <p class="condition">Afin de pouvoir satisfaire tout le monde, nous nous permettons, sans nouvelles de votre part, de redonner la table après 15 mn de retard. Merci de votre compréhension</p>
+          </div>
+
+          <!-- ce formulaire sert uniquement à montrer ce à quoi pourrait 
+          ressembler le site avec un plug-in externe de réservation,
+            il n'a pas vocation à être fonctionnel -->
+
+          <form class="formulaire">
+            <label for=""></label>
+            <input type="text" placeholder="couverts">
+            <label for=""></label>
+            <input type="date" value="2025-07-08">
+            <label for=""></label>
+            <input type="time" value="18:45">
+            <button class="plugin-cta cta" type="submit">Réserver</button>
+            <div class="info-plugin">
+              <div class="dash"></div>
+              <p class="plugin-info">Généré par “...”</p>
+            </div>  
+          </form>
+        </div>
+      </section>
+      <section class="carousel">
+        <div class="carousel-track">
+          <img src="./assets/img/tarte-abricots-800.jpg" alt="Photo de tarte aux abricots">
+          <img src="./assets/img/salade-pissenlit-800.jpg" alt="Photo d'une salade de pissenlit">
+          <img src="./assets/img/taglietelles-saumon-800.jpg" alt="Photo de taglietelles aux saumon">
+          <img src="./assets/img/tarte-abricots-800.jpg" alt="Photo de tarte aux abricots" aria-hidden="true">
+        </div>
+      </section>
+    </main>   
+
+      <!----------------- footer -------------------->
+     
+    <script src="./assets/js/global.js" defer></script>   
+    <script src="./assets/js/partials.js"></script>  
+  </body>
+</html>
+  

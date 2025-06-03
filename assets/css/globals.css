@@ -1,0 +1,715 @@
+
+/* Reset  */
+
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:100%;
+  font:inherit;
+  vertical-align:baseline;
+  font-size: 16px;
+  line-height: 1.05em;
+}
+
+body {
+  height: 100%;
+  font-family: var(--main-font-family);
+  background: linear-gradient(180deg, #FFF -20%, #BFCDE5 58.47%, #FFF 120%);  
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40px;
+  padding-top: calc(var(--header-height) + 24px);
+  gap: 40px;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+
+  
+a {
+  text-decoration: none;
+}
+
+  a:focus-visible {
+    outline: 2px solid white;
+    border: 2px solid var(--cta);
+    offset: 2px;
+  }
+   
+  a:focus {
+    outline: 2px solid white;
+    border: 3px solid var(--cta);
+  }
+
+
+
+img {
+  border-radius: 10px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+  white-space: nowrap;
+}
+
+  
+/*********************** Règles globales mobile ***************************/
+
+h1 {
+  font-family: "Gothique";
+  font-size: var(--h1-mobile-font-size);
+  font-weight: var(--h1-mobile-font-weight);
+  text-align: center;
+}
+
+h2 {
+  font-size: var(--h2-mobile-font-size);
+  font-weight: var(--h2-mobile-font-weight);
+}
+
+h3 {
+  font-size: var(--h3-mobile-font-size);
+  font-weight: var(--h3-mobile-font-weight);
+}
+
+p {
+  font-size: var(--paragraphes-mobile-font-size);
+  line-height: 1.5em;
+}
+
+.img-desktop {
+  display: none;
+}
+
+ /************************ tablettes ****************************/
+
+@media screen and (min-width:768px) {
+  h1 {
+    font-size: 2.25em;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 1.75em;
+  }
+
+  h3 {
+    font-size: 1.375em;
+  }
+
+  p {
+    font-size: 1em;
+  }
+}
+
+  /******************* règles globales desktop ************************/
+
+@media screen and (min-width: 1024px) {
+
+  main {
+    align-items: center;
+    padding-top: 32px;
+    margin-left: 100px;
+    margin-right: 100px;
+  }
+
+  h1{
+	  align-self: center;
+		font-size: var(--h1-font-size);
+    font-weight: var(--h1-font-weight);
+	}
+
+  h2 {
+    text-align: left;
+    font-size: var(--h2-font-size);
+    font-weight: var(--h2-font-weight);
+  }
+  
+  h3 { 
+    font-weight: var(--h3-font-weight);
+    font-size: var(--h3-font-size);
+  }
+
+  p {
+    font-size: var(--paragraphes-font-size);
+  }
+
+  .img-mobile {
+    display: none;
+  }
+
+  .img-desktop{
+    display: block;
+  }
+
+}
+
+/*************************** cta ***************************/
+
+.cta {
+  color: #FFF;
+  text-align: center;
+  font-size: 1em;
+  font-weight: 700;
+  background-color: var(--cta);
+  border-radius: 10px;
+  box-shadow: var(--cta-shadow);
+  padding: 16px 32px;
+  width: 90%;
+  cursor: pointer;
+  
+}
+
+
+
+.cta:focus-visible {
+  outline: 2px solid black;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+  
+.cta:focus {
+  outline: 2px solid black;
+  border: 3px solid white;
+  border-radius: 10px;
+}
+
+/******************************* cta desktop ******************************/
+
+@media screen and (min-width: 1024px) {
+  .cta {
+    width: auto;
+    align-self: center;
+    transition: all 0.3s ease-out;
+  }
+
+  .cta:hover {
+    opacity: 80%;
+    transform: scale(1.1);
+    transition: all 0.3s ease-out;
+  }
+}
+
+/******************************* header ********************************/
+
+header {
+  display: flex;
+  max-width: 100%;
+  background-color: var(--bleu-fritsch);
+  padding: 12px 40px;
+  align-items: center;
+  justify-content: space-between;
+  align-self: stretch;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+} 
+
+.logo-mobile-top-wrapper{
+  width: 25vw;
+}
+
+.logo-mobile-top-wrapper img {
+  box-shadow: none;
+}
+
+.logo-desktop-top-wrapper{
+  display: none;
+}
+
+
+.menu-navigation ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;  
+  gap: 20px;
+  margin-right: 5vw;
+}
+
+.menu-navigation ul a {
+  color: white;
+  text-transform:uppercase;
+  font-weight: var(--menu-nav-font-weight);
+  font-size: var(--menu-nav-font-size);
+
+}
+
+.menu-navigation ul a:hover {
+  text-decoration: underline;
+  transition: all 0.5s ease-out;
+}
+
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+
+/************************* burger ******************************/
+
+.burger {
+  background: none;
+  border: none;
+  width: 32px;
+  height: 27px;
+  cursor: pointer;
+}
+
+.burger .bar {
+  display: block;
+  width: 24px;
+  height: 6px;
+  background: white;
+  
+}
+
+.burger .bar::before, 
+.burger .bar::after {
+  display: block;
+  content: "";
+  width: 32px;
+  height: 6px;
+  background: white;
+  position: absolute;
+}
+
+.burger .bar::before {
+  transform: translate3d(-4px, -12px, 0)
+  
+}
+
+.burger .bar::after {
+  transform: translate3d(-4px, +12px, 0);
+}
+
+/************************** burger animations *****************************/
+
+.burger-overlap {
+  background-color: var(--bleu-pale);
+  display: flex;
+  padding: 48px 20px 40px 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  flex: 1 0 0;
+  align-self: stretch;
+  position: absolute;
+  top: 100%;
+  left: 110%;
+  width: 0%;
+  overflow-y: auto;
+  opacity: 0;
+  height: auto;
+  transition: all 0.4s ease-out;
+}
+
+.show-overlap .burger-overlap {
+  opacity: 1;
+  width: 100%;
+  left: 0;
+  z-index: 2;
+}
+
+.burger-overlap .socials {
+  padding-bottom: 40px;
+}
+
+.show-overlap .burger .bar {
+  width:0;
+}
+
+.burger .bar::before,
+.burger .bar::after {
+  transition: all 0.2s ease-out;
+}
+
+.show-overlap .burger .bar::before {
+  transform: rotate(-45deg);
+}
+
+.show-overlap .burger .bar::after {
+  transform: rotate(45deg);
+}
+
+/************** burger, contenu page de navigation *********************/
+
+.liens ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex: 1 0 0;
+}
+
+.liens a {
+  display: flex;
+  color: #000;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--menu-nav-mobile-font-size);
+  text-transform: uppercase;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: stretch;
+  gap: 32px;
+  max-width: 80%;
+  margin: 0 auto;
+  color: white;
+}
+
+.dash {
+  border: 1px solid var(--bleu-fritsch);
+  width: 60%;
+}
+
+.burger-overlap .socials {
+  padding: 0;
+}
+
+.burger-overlap .socials a,
+.burger-overlap .contact-card {
+  box-shadow: var(--cta-shadow);
+}
+
+.contacts .cta {
+  width: 100%;
+}
+
+.menu-navigation {
+  display: none;
+}
+
+.logo-desktop-top {
+  display: none
+}
+
+/***************************header desktop ****************************/
+
+@media screen and (min-width: 1024px) {
+
+  header {
+    padding-left: 80px;
+  }
+
+  .logo-mobile-top-wrapper {
+    display: none;
+  }
+ 
+  .logo-desktop-top-wrapper {
+    display: block;
+    width: 12vw;
+  }
+
+  .logo-desktop-top-wrapper img{
+    box-shadow: none;
+  }
+
+  .menu-navigation {
+    display: flex;
+  }
+
+  header{
+    position: relative;
+  }
+  
+  .burger-overlap {         /* pour assurer que l'overlap ne puisse pas être affiché en desktop  */
+    display: none;
+  }
+
+  .logo-mobile {            /* logo mobile caché pour desktop  */
+    display: none;
+  }
+
+  .burger {                /* cacher le burger */
+    display: none;
+  }
+}
+
+
+/****************** footer **********************/
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 20px 20px;
+  width: 100%;
+  background-color: var(--bleu-fritsch);
+  color: white;
+  text-align: center;
+}
+
+footer p {
+    font-size: 14px;
+}
+
+footer img {
+  box-shadow: none;
+  max-width: 100%;
+}
+
+footer .horaires {
+  margin-bottom: 32px;
+  align-self: stretch;
+}
+
+.logo-info { 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+}
+
+.horaires-cards {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.logo-mobile-bottom-wrapper {
+  width: 100%;
+}
+
+.logo-desktop-bottom-wrapper{
+  display: none;
+}
+
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: center;
+  max-width: 335px;
+}
+
+.contact-card {
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 32px;;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--bleu-moyen);
+  box-shadow: var(--deep-shadow);
+}
+
+address {
+   line-height: 1.3em;
+}
+
+address a {
+     color: white;
+}
+
+.navigation-card {
+  display: flex;
+  padding: 16px 32px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 10px;
+  background: var(--bleu-moyen);
+  box-shadow: var(--deep-shadow);
+}
+
+.gauche,
+.droite {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex: 1 0 0;
+}
+
+.navigation-card a {
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+}
+
+.navigation-card a:hover {
+  text-decoration: underline;
+  transition: all 0.3s;
+}
+
+.navigation-card li {
+  display: flex;
+}
+
+.socials {
+  display: flex;
+  padding: 24px 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px
+}
+
+.socials img {
+  width: 25px;
+  height: 25px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(180deg) brightness(0%) contrast(100%);
+}
+
+.pastille {
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-radius: 50px;
+  box-shadow: var(--deep-shadow);
+  background: var(--bleu-moyen);
+  transition: all 0.6s ease-out;
+  text-align: center;
+}
+
+
+.pastille {
+  transition: all 0.6s ease-out;
+  text-align: center;
+}
+
+.pastille:hover {
+  transform: scale(1.1);
+  transition: all 0.6s ease-out;
+}
+
+.pastille:hover img {
+  filter: invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
+  transition: all 0.6s ease-out;
+}
+
+.pastille img {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
+  transition: all 0.6s ease-out;
+}
+
+
+
+ /******************* footer tablettes  ********************************/
+
+@media screen and (min-width:768px) {
+
+  .cards{
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: space-around;
+  }
+
+}
+
+/********************** footer desktop ******************************/
+
+@media screen and (min-width:1024px){
+  
+  .logo-info {
+      width: 90%;
+      margin: auto;
+      align-self: stretch;
+      flex-direction: row;
+      justify-content: space-around;
+  }
+
+  .horaires-cards{
+    max-width: 50%;
+  }
+
+  .cards {
+    gap: 3vw;
+  }
+
+  .socials {
+    padding: 0;
+    margin-top: 5vw;
+    width: 15%;
+  }
+ 
+ .logo-mobile-bottom-wrapper {
+  display: none;
+ }
+
+  .logo-desktop-bottom-wrapper{
+    display: block;
+    width: 15%;
+  }
+}
+
+
+/******************************* keyframes ***********************************/
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromBottom {
+  from{
+    transform: translateY(110%);
+    opacity: 0; 
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1; 
+  }
+}

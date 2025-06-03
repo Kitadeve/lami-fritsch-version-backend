@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Réservation de groupe - L'ami Fritsch</title>
+    <meta name="description" content="Contactez L'ami Fritsch pour organiser vos événements, réserver pour votre groupe.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="icon" type="image/x-icon" href="./assets/icons/Favicon.svg">
+    <link rel="stylesheet" href="./assets/css/styleguide.css">
+    <link rel="stylesheet" href="./assets/css/globals.css">
+    <link rel="stylesheet" href="./assets/css/contact.css">
+</head>
+  <body>
+
+    <!----------------------- header -------------------------------------->
+
+
+
+    <main>
+
+      <!--------------------- Introduction ---------------------->
+
+      <section class="intro">
+        <h1>Groupe</h1>
+        <p>L’équipe de l’ami Fritsch se tient à 
+          votre disposition pour organiser votre 
+          déjeuner ou dîner d’affaires, repas de 
+          fin d’année, mariage, anniversaire...
+        </p>
+        <p>
+          Nous pouvons accueillir jusqu’à 100 personnes.
+           Nous disposons d’un espace en mezzanine pouvant 
+           accueillir jusqu’à 30 personnes, et proposons la 
+           privatisation du restaurant à partir de 50 personnes.
+        </p>
+        <p>
+          N’hésitez pas à nous contactez à travers le formulaire suivant ou par téléphone au 03.68.03.81.67.
+        </p>
+        <p>
+          Nous nous ferons un plaisir de discuter des votre événement et de prévoir LE menu adapté avec vous !
+        </p>
+      </section>
+
+      <!--------------------- photos --------------------->
+
+      <section class="photo-grid">
+        <div class="photo-container">
+          <img class="img-mobile un" src="./assets/img/contacts-party-490.jpg" alt="Photos de groupe avec buffet de desserts">
+          <img class="img-desktop un" src="./assets/img/contacts-party-1380.jpg" alt="Photos de groupe avec buffet de desserts">
+        </div>
+        <div class="photo-container">
+          <img class="img-mobile deux" src="./assets/img/contacts-dressage-groupe-490.jpg" alt="Photo d'assiettes en cours de dressage, pour un groupe">
+          <img class="img-desktop deux" src="./assets/img/contacts-dressage-groupe-1380.jpg" alt="Photo d'assiettes en cours de dressage, pour un groupe">
+        </div>
+        <div class="photo-container">
+          <img class="img-mobile trois" src="./assets/img/contacts-sanglier-broche-490.jpg" alt="Photo de sangliers à la broche">
+          <img class="img-desktop trois" src="./assets/img/contacts-sanglier-broche-1380.jpg" alt="Photo de sangliers à la broche">
+        </div>
+        <div class="photo-container">
+          <img class="img-mobile quatre" src="./assets/img/contacts-birthday-490.jpg" alt="Photo du coin stammtisch préparé pour un anniversaire">
+          <img class="img-desktop quatre" src="./assets/img/contacts-birthday-1380.jpg" alt="Photo du coin stammtisch préparé pour un anniversaire">
+
+        </div>
+      </section>
+
+      <!--------------------- Formulaire ---------------------->
+
+      <section class="formulaire">
+        
+        <form action="">
+          <h2>Réservations</h2>
+          <p class="rgpd">Les champs marquées d’un astérisque sont obligatoires</p>
+          <div class="nom-prenom">
+            <div class="nom">
+              <label for="lastName" class="sr-only">Nom de famille</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Nom*"  aria-required="true">
+            </div>
+            <div class="prenom">
+              <label for="firstName" class="sr-only">Prénom</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Prénom*"  aria-required="true">
+            </div>
+          </div>
+          <div class="elements">
+            <div>
+              <label for="email" class="sr-only">Adress e-mail</label>
+              <input type="email" id="email" name="email" placeholder="E-mail*"  aria-required="true">
+            </div>
+            <div>
+              <label for="phoneNumber" class="sr-only">Numéro de téléphone</label>
+              <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Téléphone">
+            </div>
+          </div>
+          <div class="date-heure">
+            <label for="dateTime" class="sr-only">Date et heure</label>
+            <input type="datetime-local" id="dateTime" name="dateTime" value="2025-07-08T18:45">
+          </div>
+          <div class="elements">
+            <div>
+              <label for="groupSize" class="sr-only">Taille du groupe</label>
+              <input type="number" id="groupSize" name="groupSize" placeholder="Taille du groupe (de 16 à 100) *" min="16" max="100" aria-required="true">
+            </div>
+            <div>
+              <label for="eventType" class="sr-only">Type d'événnement</label>
+              <input type="text" id="eventType" name="eventType" placeholder="Type d'événement" >
+            </div>
+          </div>
+          <label for="message" class="sr-only">Message</label>
+          <textarea name="message" id="message" placeholder="Message" rows="10" ></textarea>
+          <div class="news">
+            <input type="checkbox" id="subscribeNews" name="subscribe" value="newsletter" />
+            <label for="subscribeNews">
+              J’accepte de recevoir des offres et communication du restaurant par e-mail.
+            </label>
+          </div>
+          <button class="cta" type="submit">Envoyer</button>
+          <div class="validation-card">
+            <p class="validation"></p>
+            <button class="validation-confirm" type="button">Compris</button>
+          </div>
+          <p class="rgpd">
+            Les informations recueillies via ce formulaire sont destinées
+             à L'ami Fritsch pour la gestion de votre demande et pour vous 
+             envoyer des informations et offres, si vous le souhaitez. 
+             Conformément au RGPD, vous disposez de droits sur vos données. 
+            Pour plus de détails, consultez notre politique de protection des données.
+          </p>
+        </form>
+        <a href="./affichage-contact.html" style="margin-top:32px" target="_blank" rel="noopener noreferrer">Page d'affichage du contenu pour présentation</a>
+      </section>
+
+      <!--------------------- API google maps ---------------------->
+
+      <section class="map">
+        <!------------------------------------------- methode js ------------------------------------------->
+        
+          <!-- <script>
+            (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+              key: "YOUR_API_KEY",
+              v: "weekly",
+              // Use the 'v' parameter to indicate the version to use (weekly, beta, alpha, etc.).
+              // Add other bootstrap parameters as needed, using camel case.
+            });
+          </script> -->
+          <!-- <div id="map"></div> -->
+
+        <!------------------------------------------- methode gmp-map ------------------------------------------->
+
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEF31zKFBqJJHviPVQ9ZPlSUCyZ5GGLNY&loading=async&libraries=maps&v=beta" defer></script>
+          <gmp-map
+            center="48.808948, 7.585029"
+            zoom="15"
+            map-id="DEMO_MAP_ID"
+            style="height: 400px">
+          </gmp-map>
+      </section>
+
+    </main>
+
+        <!---------------- footer ------------------------------->
+
+    <script src="./assets/js/contact-local-storage.js"></script>
+    <script src="./assets/js/global.js"></script>
+    <script src="./assets/js/partials.js"></script>
+    <!-- <script src="./assets/js/maps.js"></script> -->
+  </body>
+</html>
+  

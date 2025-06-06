@@ -1,73 +1,64 @@
-  const motDePasse = prompt("Mot de passe pour accéder à l'administration :");
-  if (motDePasse !== "1234") {
-    alert("Mot de passe incorrect !");
-    window.location.href = "index.html"; // ou une autre page
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("form");
+  const jours = ["Mercredi", "Jeudi", "Vendredi"];
+  const message = document.querySelector(".message");
+
+  form.addEventListener("submit", function (e) {
+    let atLeastOneCouple = false;
+
+    jours.forEach(jour => {
+      const entree = form.querySelector(`input[name="entree_nouvelle[${jour}]"]`);
+      const plat = form.querySelector(`input[name="plat_nouveau[${jour}]"]`);
+      // Vérifie si les deux champs sont remplis pour ce jour
+      if (entree.value.trim() && plat.value.trim()) {
+        atLeastOneCouple = true;
+        entree.classList.remove("input-error");
+        plat.classList.remove("input-error");
+        entree.classList.add("input-success");
+        plat.classList.add("input-success");
+      } else {
+        entree.classList.remove("input-success");
+        plat.classList.remove("input-success");
+      }
+    });
+
+    if (!atLeastOneCouple) {
+      e.preventDefault();
+      // Mets en rouge tous les champs pour signaler l'erreur
+      jours.forEach(jour => {
+        const entree = form.querySelector(`input[name="entree_nouvelle[${jour}]"]`);
+        const plat = form.querySelector(`input[name="plat_nouveau[${jour}]"]`);
+        entree.classList.add("input-error");
+        plat.classList.add("input-error");
+      });
+      message.innerHTML = "❌ Merci de remplir au moins un couple entrée + plat pour un jour.";
+      message.classList.add("message-error");
+    }
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('success')) {
+    setTimeout(() => {
+      // Masque le message
+      const successMsg = document.querySelector(".message-success");
+      if (successMsg) successMsg.style.display = "none";
+      // Enlève le paramètre de l'URL
+      params.delete('success');
+      const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
+      window.history.replaceState({}, '', newUrl);
+    }, 2000);
   }
 
-function sanitizeInput(input) {
-  return input.replace(/</g, "&lt;")
-              .replace(/>/g, "&gt;")
-              .replace(/["']/g, "")
-              .replace(/&/g, "&amp;");
-}
-
-
-
-window.addEventListener("DOMContentLoaded", function () {
-  const formulairePdj = document.querySelector("form")
-  const resetLocalStorage = document.getElementById("reset")
-  console.log(formulairePdj);
-  
-
-  formulairePdj.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const jour = sanitizeInput(document.getElementById("jour").value) ;
-    const entree = sanitizeInput(document.getElementById("entree").value) ;
-    const plat = sanitizeInput(document.getElementById("plat").value) ;
-  
-    const platsDuJour = JSON.parse(localStorage.getItem("platsDuJour") || "{}");
-
-    platsDuJour[jour] = { entree, plat };
-
-    localStorage.setItem("platsDuJour", JSON.stringify(platsDuJour));
-    alert(`Plat du jour pour ${jour} enregistré !`);
-    this.reset();
+  // Optionnel : feedback visuel en temps réel
+  form.querySelectorAll('input[type="text"]').forEach(input => {
+    input.addEventListener("input", function () {
+      if (input.value.trim()) {
+        input.classList.remove("input-error");
+        input.classList.add("input-success");
+      } else {
+        input.classList.remove("input-success");
+      }
+    });
   });
-  
-  resetLocalStorage.addEventListener("click", function() {
-    localStorage.removeItem("platsDuJour");
-  });
-})
 
-
-const reload = document.querySelector("#reload")
-
-function getCat() {
-  const chats = document.querySelector(".chats");
-
-  fetch("./assets/php/cat-proxy.php")
-    .then(response => response.json())
-    .then(result => {
-      chats.innerHTML = "";
-      const catData = result[0];
-      const img = document.createElement("img");
-      img.src = catData.url;
-      img.alt = "Photo de chat aléatoire";
-
-      const breedInfo = catData.breeds[0];
-      const breedName = document.createElement("h3");
-      breedName.textContent = `Race : ${breedInfo.name}`;
-
-      const temperament = document.createElement("p");
-      temperament.textContent = `Tempérament : ${breedInfo.temperament}`;
-
-      chats.appendChild(img);
-      chats.appendChild(breedName);
-      chats.appendChild(temperament);
-    })
-    .catch(error => console.log('error', error));
-}
-
-window.addEventListener("DOMContentLoaded", getCat)
-reload.addEventListener("click",getCat)
+});

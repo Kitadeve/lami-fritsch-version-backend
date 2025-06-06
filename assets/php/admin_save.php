@@ -2,21 +2,18 @@
 try {
     $pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
 
-$jours = ['Mercredi','Jeudi','Vendredi'];
+    $jours = ['Mercredi','Jeudi','Vendredi'];
 foreach ($jours as $jour) {
     $entree_id = $_POST['entree_existante_id'][$jour] ?? null;
     $plat_id = $_POST['plat_existant_id'][$jour] ?? null;
     $entree_nouvelle = trim($_POST['entree_nouvelle'][$jour] ?? '');
     $plat_nouveau = trim($_POST['plat_nouveau'][$jour] ?? '');
 
-    if (!$jour) {
-        header("Location: admin.php?error=1");
-        exit();
-    }
+    // if (!$jour) {
+    //     header("Location: admin.php?error=1");
+    //     exit();
+    // }
 
     // Gérer l'entrée
     if (!$entree_id && $entree_nouvelle) {
@@ -57,3 +54,9 @@ foreach ($jours as $jour) {
 
 header("Location: admin.php?success=1");
 exit();
+
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+
+

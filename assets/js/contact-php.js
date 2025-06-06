@@ -32,6 +32,7 @@ function isValidEmail (email) {
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
+  
 
     // On récupère les valeurs brutes
     const lastNameRaw = form.lastName.value.trim();
@@ -96,26 +97,39 @@ form.addEventListener('submit', function(e){
              message: sanitizeInput(messageRaw),
              check: subscribeNews
         };
-        // console.log(contact);
-        // console.log(subscribeNews);
-        
-        // Récupérer les messages existants ou initialiser un tableau vide
-        const messages = JSON.parse(localStorage.getItem('contactMessages')) || [];
 
-        // Ajouter le nouveau message
-        messages.push(contact);
-
-        // Enregistrer dans le localStorage
-        localStorage.setItem('contactMessages', JSON.stringify(messages));
-        
-        // Réinitialiser le formulaire
-        this.reset();
-    } 
-    else {
-        form.classList.add("active")
-        validation.innerText = errorMessage;
+       fetch("./assets/php/contact_save.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contact)
+      })
+      .then(res => res.json())
+      .then(response => {
+        if (response.success) {
+          validation.innerText = "Formulaire envoyé, merci !";
+          popUp.classList.add("validation-succes");
+          popUp.classList.remove("validation-error");
+          form.reset();
+        } else {
+          validation.innerText = "Erreur lors de l'envoi du message.";
+          popUp.classList.add("validation-error");
+          popUp.classList.remove("validation-succes");
+        }
+      })
+      .catch(() => {
+        validation.innerText = "Erreur technique, veuillez réessayer.";
         popUp.classList.add("validation-error");
         popUp.classList.remove("validation-succes");
+      });
+
+      form.reset();
+    } 
+    else {
+      form.classList.add("active");
+      validation.innerText = errorMessage;
+      popUp.classList.add("validation-error");
+      popUp.classList.remove("validation-succes");
+        
     }
 
   // reset de la valeur 

@@ -24,5 +24,5 @@ if ($action === 'modifier' && $id && isset($_POST['nouveau_nom'])) {
     $stmt = $pdo->prepare("DELETE FROM plats WHERE id = :id");
     $stmt->execute([':id' => $id]);
 }
-header('Location: admin.php');
+header('Location: admin_gestion.php');
 exit();

@@ -6,8 +6,12 @@
 
 main {
     justify-content: center;
+    min-height: 80vh;
 }
 
+.cta:hover {
+  transform: scale(1);
+}
 .cta.send {
   width: auto;
   margin: 48px auto;
@@ -16,6 +20,18 @@ main {
 h1 {
   font-family: "Lato";
 }
+
+h2 {
+  margin-bottom: 32px;
+}
+
+.utilities {
+    position: fixed;
+    padding-top: calc(var(--header-height) + 12px) ;
+    right: 0px;
+  }
+
+
 
 .cta.logout {
     display: block;
@@ -44,6 +60,10 @@ legend {
 
 label {
     margin-right: 8px;
+}
+
+.login-page form{
+  margin: 0 auto;
 }
 
 input {
@@ -136,4 +156,108 @@ input {
 }
 .mini-btn.delete:hover {
   background: #b71c1c;
+}
+
+.login-error {
+  align-self: center;
+  text-align: center;
+  border: 4px solid red;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.chats img {
+  max-width: 50%;
+}
+
+input.input-error {
+  border: 2px solid red;
+}
+
+input.input-success {
+  border: 2px solid rgb(0, 168, 0);
+}
+
+.message-suggestions.message-success {
+  align-self: center;
+  text-align: center;
+  border: 4px solid green;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: rgba(0, 161, 27, 0.2);
+}
+
+.message.message-error,
+.message-suggestions.message-error {
+  align-self: center;
+  text-align: center;
+  border: 4px solid red;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  border-radius: 10px;
+  background: rgba(255, 0, 0, 0.2);
+}
+
+
+@media (min-width: 1024px) {
+  .utilities {
+    padding-top: 24px;
+  }
+}
+
+/* Responsive pour le tableau de gestion */
+@media (max-width: 800px) {
+  .gestion-table table,
+  .gestion-table thead,
+  .gestion-table tbody,
+  .gestion-table th,
+  .gestion-table td,
+  .gestion-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .gestion-table thead {
+    display: none; /* Cache les en-têtes sur mobile */
+  }
+
+  .gestion-table tr {
+    margin-bottom: 24px;
+    border-bottom: 2px solid #eee;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px #33426411;
+    padding: 12px 0;
+  }
+
+  .gestion-table td {
+    text-align: left;
+    padding: 12px 16px;
+    position: relative;
+    min-width: 180px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .gestion-table td:before {
+    content: attr(data-label);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    color: #334264;
+    font-size: 0.98em;
+  }
+
+  .gestion-form {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+}
+
+/* Pour que les labels s'affichent sur mobile */
+.gestion-table td[data-label] {
+  padding-top: 20px;
 }

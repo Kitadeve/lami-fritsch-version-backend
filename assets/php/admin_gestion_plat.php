@@ -4,8 +4,9 @@ if (empty($_SESSION['admin'])) {
     header('Location: login.php');
     exit();
 }
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// Connexion à la bdd
+require_once("./connexion_bdd.php");
 
 $id = $_POST['id'] ?? null;
 $action = $_POST['action'] ?? '';

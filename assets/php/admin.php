@@ -5,13 +5,17 @@ if (empty($_SESSION['admin'])) {
     exit();
 }
 
-// Connexion
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+// Connexion à la bdd
+require_once("./connexion_bdd.php");
 
 // Récupérer les entrées et plats existants
-$entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
-$plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
+try {
+  $entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
+  $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
+} catch (PDOException $e) {
+  echo "Erreur lors de la récupération de la nase de données." . $e->getMessage();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -68,7 +72,7 @@ $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
             <?php endforeach; ?>
           </datalist>
 
-          <input class="cta send" type="submit" value="Enregistrer">
+          <button class="cta send" type="submit" value="Enregistrer">Enregistrer les pats du jour</button>
         </form>
       </section>
 
@@ -79,12 +83,13 @@ $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
         <form method="POST" action="admin_save_suggestions.php" id="suggestions-form">
           <div id="suggestions-list">
            <label for="suggestion">Plat :</label>
-           <input type="text" name="suggestion" id="suggestion">
+           <input type="text" name="suggestion" id="suggestion" list="suggestions-list-datalist">
+           <datalist id="suggestions-list-datalist"></datalist>
 
            <label for="prix">Prix :</label>
            <input type="text" name="prix" id="prix">
           </div>
-          <button type="submit" class="cta send">Enregistrer les suggestions</button>
+          <button type="submit" class="cta send">Enregistrer la suggestion</button>
         </form>
       </section>
 

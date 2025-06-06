@@ -1,10 +1,16 @@
-
 <?php
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+session_start();
+if (empty($_SESSION['admin'])) {
+    http_response_code(403);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'Non autorisé']);
+    exit();
+}
 
-$sql = "SELECT id, nom, prix FROM suggestions ORDER BY id DESC";
-$suggestions = $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+// Connexion à la bdd
+require_once("./connexion_bdd.php");
+
+$suggestions = $pdo->query("SELECT id, nom, prix FROM suggestions WHERE visible = 1 ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
 
 header('Content-Type: application/json');
 echo json_encode($suggestions);

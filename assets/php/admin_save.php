@@ -1,8 +1,8 @@
 <?php
-try {
-    $pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+ // Connexion à la bdd
+require_once("./connexion_bdd.php");
+try {
     $jours = ['Mercredi','Jeudi','Vendredi'];
 foreach ($jours as $jour) {
     $entree_id = $_POST['entree_existante_id'][$jour] ?? null;

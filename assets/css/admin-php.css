@@ -28,7 +28,7 @@ h2 {
 .utilities {
     position: fixed;
     padding-top: calc(var(--header-height) + 12px) ;
-    right: 0px;
+    right: 8px;
   }
 
 
@@ -75,7 +75,7 @@ input {
 
 /* Tableau gestion */
 .gestion-table {
-  width: 100%;
+  /* width: 100%; */
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,6 +1,7 @@
 <?php
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+// Connexion à la bdd
+require_once("./connexion_bdd.php");
 
 $sql = "SELECT m.jour, e.nom AS entree, p.nom AS plat
         FROM menus_du_jour m

@@ -66,4 +66,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
   });
+
+  // Remplir le datalist des suggestions
+  fetch('../php/admin_get_suggestions.php')
+    .then(response => response.json())
+    .then(suggestions => {
+      const datalist = document.getElementById('suggestions-list-datalist');
+      if (!datalist) return;
+      datalist.innerHTML = '';
+      suggestions.forEach(sugg => {
+        // On encode le nom pour la sécurité
+        const option = document.createElement('option');
+        option.value = sugg.nom;
+        option.textContent = `${sugg.nom} (${parseFloat(sugg.prix).toFixed(2)} €)`;
+        datalist.appendChild(option);
+      });
+    });
+
+  // Auto-remplir le prix si suggestion connue
+  suggestionInput.addEventListener("input", function () {
+    fetch('../php/admin_get_suggestions.php')
+      .then(response => response.json())
+      .then(suggestions => {
+        const found = suggestions.find(s => s.nom === suggestionInput.value);
+        if (found) {
+          prixInput.value = parseFloat(found.prix).toFixed(2);
+        }
+      });
+  });
 });

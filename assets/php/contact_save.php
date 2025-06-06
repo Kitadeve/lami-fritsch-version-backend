@@ -2,9 +2,8 @@
 // filepath: c:\xampp\htdocs\lami-fritsch-version-backend\assets\php\contact_save.php
 
 header('Content-Type: application/json');
-// Connexion à la base
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+require_once("./connexion_bdd.php");
 
 // Vérifie que le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

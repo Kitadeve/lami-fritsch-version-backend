@@ -9,8 +9,9 @@ if (empty($_SESSION["admin"])) {
 }
 
 try{
-$pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", "root","");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Connexion à la bdd
+require_once("./connexion_bdd.php");
 
 if (
     !isset($_POST["suggestion"], $_POST["prix"]) ||
@@ -36,6 +37,7 @@ $stmt->execute([$nom, $prix]);
 echo json_encode(["success"=> true, "message" => "Sugestion enregistrée avec succés !"]);
 
 $pdo = null;
+
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(["success" => false, "message" => "Erreur serveur : " . $e->getMessage()]);

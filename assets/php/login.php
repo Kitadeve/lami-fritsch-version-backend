@@ -4,9 +4,10 @@ $erreur = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $_POST['user'] ?? '';
     $pass = $_POST['pass'] ?? '';
-    // Connexion à la base
-    $pdo = new PDO("mysql:host=127.0.0.1;port=3307;dbname=restaurant;charset=utf8", 'root', '');
-    $stmt = $pdo->prepare("SELECT password FROM admins WHERE username = :user");
+
+    // Connexion à la bdd
+    require_once("./connexion_bdd.php");
+    
     $stmt->execute(['user' => $user]);
     $row = $stmt->fetch();
     if ($row && password_verify($pass, $row['password'])) {

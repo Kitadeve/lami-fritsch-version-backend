@@ -37,6 +37,12 @@ function updateHeaderHeight() {
   root.style.setProperty("--header-height", `${header.offsetHeight}px`);
 }
 
+window.addEventListener("DOMContentLoaded", function(){
+  menuMobile();
+  updateHeaderHeight();
+  updateBurgerHeight();
+})
+
 window.addEventListener("resize", function() {
   updateHeaderHeight();
   updateBurgerHeight();

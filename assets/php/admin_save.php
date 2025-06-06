@@ -52,11 +52,17 @@ foreach ($jours as $jour) {
     } 
 }
 
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
+}
+
 header("Location: admin.php?success=1");
 exit();
 
-} catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
-}
+?>
+
 
 

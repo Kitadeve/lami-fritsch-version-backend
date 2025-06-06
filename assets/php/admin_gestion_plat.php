@@ -8,6 +8,7 @@ if (empty($_SESSION['admin'])) {
 // Connexion à la bdd
 require_once("./connexion_bdd.php");
 
+try {
 $id = $_POST['id'] ?? null;
 $action = $_POST['action'] ?? '';
 if ($action === 'modifier' && $id && isset($_POST['nouveau_nom'])) {
@@ -24,6 +25,14 @@ if ($action === 'modifier' && $id && isset($_POST['nouveau_nom'])) {
     // Puis supprimer le plat
     $stmt = $pdo->prepare("DELETE FROM plats WHERE id = :id");
     $stmt->execute([':id' => $id]);
+}
+
+$pdo = null;
+
+} catch (PDOException $e) {
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
 }
 header('Location: admin_gestion.php');
 exit();

@@ -1,0 +1,47 @@
+<header role="banner">
+  <a class="logo-desktop-top-wrapper" href="/lami-fritsch-version-backend/index.html">
+    <span class="sr-only">Retour à l'accueil</span>
+    <img src="/lami-fritsch-version-backend/assets/img/svg/logo-horizontal-grand.svg" alt="Logo du restaurant L'ami Fritsch">
+  </a>
+  <a class="logo-mobile-top-wrapper" href="index.html">
+    <span class="sr-only">Retour à l'accueil</span>
+    <img src="/lami-fritsch-version-backend/assets/img/svg/logo-horizontal-petit.svg" alt="Logo du restaurant L'ami Fritsch">
+  </a>
+  <button id="burger" class="burger" aria-label="Ouvrir le menu principal"><span class="bar"></span></button>
+
+  <div id="burger-overlap" class="burger-overlap" aria-label="Menu mobile">
+    <nav class="liens" role="navigation" aria-label="Menu mobile">
+      <ul>
+        <li><a href="/lami-fritsch-version-backend/carte-et-menus.html">Carte et menus</a></li>
+        <li><a href="/lami-fritsch-version-backend/reservations.html">Réservations</a></li>
+        <li><a href="/lami-fritsch-version-backend/contact.html">Groupe</a></li>
+        <li class="mobile-only"><a href="/lami-fritsch-version-backend/mentions-legales.html">Mentions légales</a></li>
+        <li class="mobile-only"><a href="/lami-fritsch-version-backend/protections-donees.html">Protections des données</a></li>
+      </ul>
+    </nav>
+    <div class="dash"></div>
+    <div class="contacts">
+      <div class="contact-card">
+        <address>
+          L'ami Fritsch<br>
+          9, rue principale, 67350<br>
+          Ettendorf<br>
+          Tél : <a href="tel:0368038167">03.68.03.81.67</a><br>
+          Mail : <a href="mailto:lamifritsch@orange.fr">lamifritsch@orange.fr</a>
+        </address>
+      </div>
+      <a class="cta" href="./reservations.html">Réserver</a>
+    </div>
+    <div class="dash"></div>
+    <div class="socials">
+      <a class="pastille" target="_blank" href="https://www.instagram.com/lamifritsch/">
+        <span class="sr-only">Suivez-nous sur Instagram</span>
+        <img src="/lami-fritsch-version-backend/assets/icons/instagram-brands.svg" alt="Logo Instagram">
+      </a>
+      <a class="pastille" target="_blank" href="https://www.facebook.com/Lamifritsch/">
+        <span class="sr-only">Suivez-nous sur Facebook</span>
+        <img src="/lami-fritsch-version-backend/assets/icons/facebook-f-brands-solid.svg" alt="Logo Facebook">
+      </a>
+    </div>
+  </div>
+</header>

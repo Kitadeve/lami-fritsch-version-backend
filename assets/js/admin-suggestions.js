@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 2000);
           } else {
             suggestionMsg.textContent = "❌ " + data.message;
+            // suggestionMsg.textContent = "❌ " + "Erreur";
             suggestionMsg.classList.remove("message-success");
             suggestionMsg.classList.add("message-error");
           }
@@ -68,9 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Remplir le datalist des suggestions
+  let allSuggestions = [];
+
   fetch('../php/admin_get_suggestions.php')
     .then(response => response.json())
     .then(suggestions => {
+      allSuggestions = suggestions;
       const datalist = document.getElementById('suggestions-list-datalist');
       if (!datalist) return;
       datalist.innerHTML = '';
@@ -94,4 +98,41 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
   });
+
+  const suggestionBtnContainer = document.getElementById('suggestion-btn-container');
+
+  function updateMiniBtn() {
+    suggestionBtnContainer.innerHTML = '';
+    const found = allSuggestions.find(s => s.nom === suggestionInput.value);
+    if (found) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'mini-btn';
+      btn.title = found.visible ? 'Masquer' : 'Afficher';
+      btn.innerHTML = found.visible ? '&#128683;' : '&#128065;'; // 🚫 ou 👁
+      btn.addEventListener('click', function () {
+        fetch('/lami-fritsch-version-backend/assets/php/admin_toggle_suggestion_visibility.php', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ id: found.id, visible: found.visible ? 0 : 1 })
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (!data.success) {
+            alert(data.message || "Erreur lors de la modification.");
+            return;
+          }
+          found.visible = found.visible ? 0 : 1;
+          updateMiniBtn();
+        })
+        .catch(error => {
+          alert("Erreur technique ou session expirée.");
+          console.error(error);
+        });
+      });
+      suggestionBtnContainer.appendChild(btn);
+    }
+  }
+
+  suggestionInput.addEventListener('input', updateMiniBtn);
 });

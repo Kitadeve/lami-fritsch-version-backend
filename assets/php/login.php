@@ -1,24 +1,34 @@
 <?php
 session_start();
-$erreur = '';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = $_POST['user'] ?? '';
-    $pass = $_POST['pass'] ?? '';
 
-    // Connexion à la bdd
-    require_once("./connexion_bdd.php");
-    
-    $stmt->execute(['user' => $user]);
-    $row = $stmt->fetch();
-    if ($row && password_verify($pass, $row['password'])) {
-        $_SESSION['admin'] = true;
-        header('Location: admin.php');
-        exit();
-    } else {
-        $erreur = "Identifiants incorrects";
-      }
-    $pdo = null;
-}
+try {
+  $erreur = '';
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      $user = $_POST['user'] ?? '';
+      $pass = $_POST['pass'] ?? '';
+
+      // Connexion à la base
+      require_once("./connexion_bdd.php");    
+
+      
+      $stmt = $pdo->prepare("SELECT password FROM admins WHERE username = :user");
+      $stmt->execute(['user' => $user]);
+      $row = $stmt->fetch();
+      if ($row && password_verify($pass, $row['password'])) {
+          $_SESSION['admin'] = true;
+          header('Location: admin.php');
+          exit();
+      } else {
+          $erreur = "Identifiants incorrects";
+        }
+      $pdo = null;
+  }
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
+  }
 ?>
 <!DOCTYPE html>
 <html lang="fr">

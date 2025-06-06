@@ -4,6 +4,7 @@ header('Content-Type: application/json');
 // Inclure la clé API depuis un fichier non versionné
 include 'config.php';
 
+try {
 // Prépare la requête cURL
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, "https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1");
@@ -22,4 +23,12 @@ if(curl_errno($ch)){
 }
 
 curl_close($ch);
+
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
+}
+
 ?>

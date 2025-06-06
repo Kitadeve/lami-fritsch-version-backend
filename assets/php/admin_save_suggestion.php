@@ -40,6 +40,10 @@ $pdo = null;
 
 } catch (PDOException $e) {
     http_response_code(500);
-    echo json_encode(["success" => false, "message" => "Erreur serveur : " . $e->getMessage()]);
+    if ($e->getCode() == 23000) { // Doublon
+        echo json_encode(["success" => false, "message" => "Cette suggestion existe déjà, utilisez le bouton pour l'afficher"]);
+    } else {
+        echo json_encode(["success" => false, "message" => "Erreur serveur : " . $e->getMessage()]);
+    }
 }
 ?>

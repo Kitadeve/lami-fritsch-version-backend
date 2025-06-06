@@ -82,6 +82,12 @@ input {
   margin: 32px 0;
 }
 
+.gestion-table td.boutons {
+  display: flex;
+  gap: 16px
+
+}
+
 .gestion-table table {
   width: 90%;
   border-collapse: separate;
@@ -260,4 +266,31 @@ input.input-success {
 /* Pour que les labels s'affichent sur mobile */
 .gestion-table td[data-label] {
   padding-top: 20px;
+}
+
+/* Pour le message que confirme l'affichage ou non d'un suggestion  */
+
+.confirm-display {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  top: 50%;
+  left: 50%;
+  padding: 16px;
+  transform: translate(-50%, -50%) scale(0);
+  color: white;
+  background-color: var(--bleu-fritsch);
+  border: 1px solid var(--bleu-fritsch);
+  border-radius: 10px;
+  transition: all 0.5 ease-in;
+}
+
+.confirm-display .btn .cta {
+  margin: 8px;
+}
+
+.show.confirm-display {
+  transform: translate(-50%, -50%) scale(1);
+  transition: all 0.5 ease-in;
 }

@@ -25,11 +25,19 @@ try {
     } elseif ($action === 'masquer' && $id) {
         $stmt = $pdo->prepare("UPDATE suggestions SET visible = 0 WHERE id = :id");
         $stmt->execute([':id' => $id]);
+    } elseif ($action === 'afficher' && $id) {
+        $stmt = $pdo->prepare("UPDATE suggestions SET visible = 1 WHERE id = :id");
+        $stmt->execute([':id' => $id]);
     }
+
+    $pdo = null;
+
 } catch (PDOException $e) {
-    // Tu peux logger l'erreur si besoin
-    // error_log($e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
 }
+
 header('Location: admin_gestion.php');
 exit();
 

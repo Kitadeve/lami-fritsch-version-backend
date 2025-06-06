@@ -10,8 +10,16 @@ if (empty($_SESSION['admin'])) {
 // Connexion à la bdd
 require_once("./connexion_bdd.php");
 
+try{
 $suggestions = $pdo->query("SELECT id, nom, prix FROM suggestions WHERE visible = 1 ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
 
 header('Content-Type: application/json');
 echo json_encode($suggestions);
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
+}
+
 ?>

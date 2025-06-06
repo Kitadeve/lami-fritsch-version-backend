@@ -18,6 +18,37 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  //confirmation pour la visibilité
+  const btnShow = document.querySelectorAll("button[name='action'][value='afficher']");
+  const btnHide = document.querySelectorAll("button[name='action'][value='masquer']");
+  const btnOui = document.querySelector("button[name='action'][value='afficher']");
+  const btnNon = document.querySelectorAll("button[name='action'][value='non']");
+  const confirmation = document.querySelector(".confirm-display");
+  const confirmTexte = document.querySelector(".texte-confirm");
+
+  btnShow.forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      if (!confirm("Afficher la suggestion. Confirmer ?")) {
+        e.preventDefault();
+      }
+      // e.preventDefault();
+      // confirmation.classList.add("show");
+      // confirmTexte.innerHTML = "Afficher la suggestion. Confirmer ?";
+    })
+  });
+
+  // btnOui.addEventListener("click", function () {
+  //   confirmation.classList.remove("show");
+  // })
+
+  btnHide.forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      if (!confirm("Masquer la suggestion. Confirmer ?")) {
+        e.preventDefault();
+      }
+    })
+  });
+
   // Auto-resize des textareas
   document.querySelectorAll('.auto-resize').forEach(function(textarea) {
     function resize() {

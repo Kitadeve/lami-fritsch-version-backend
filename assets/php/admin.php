@@ -12,8 +12,10 @@ require_once("./connexion_bdd.php");
 try {
   $entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
   $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
+  $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
-  echo "Erreur lors de la récupération de la nase de données." . $e->getMessage();
+  echo "Erreur lors de la récupération de la base de données." . $e->getMessage();
 }
 
 ?>
@@ -88,7 +90,9 @@ try {
 
            <label for="prix">Prix :</label>
            <input type="text" name="prix" id="prix">
+           <div style="display: inline" id="suggestion-btn-container"></div>
           </div>
+          
           <button type="submit" class="cta send">Enregistrer la suggestion</button>
         </form>
       </section>
@@ -106,7 +110,7 @@ try {
     <script src="../js/cats.js"></script>
     <script src="../js/global.js"></script>
     <script src="../js/partials.js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../js/admin-pdj.js"></script>
     <script src="../js/admin-suggestions.js"></script>
 </body>
 </html>

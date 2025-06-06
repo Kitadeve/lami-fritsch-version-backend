@@ -5,6 +5,7 @@ header('Content-Type: application/json');
 
 require_once("./connexion_bdd.php");
 
+try {
 // Vérifie que le formulaire a été soumis
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Récupère les données JSON envoyées par le JS
@@ -41,4 +42,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(['success' => false]);
     exit();
 }
+
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+    error_log($e->getMessage());
+    echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";
+    echo "<div style='color:red;'>Erreur : " . htmlspecialchars($e->getMessage()) . "</div>";
+}
+
 ?>

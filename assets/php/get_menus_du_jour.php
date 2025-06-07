@@ -1,5 +1,6 @@
 <?php
-
+//session admin
+require_once("./admin_session.php");
 // Connexion à la bdd
 require_once("./connexion_bdd.php");
 

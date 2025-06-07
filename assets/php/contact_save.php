@@ -1,6 +1,7 @@
 <?php
 // filepath: c:\xampp\htdocs\lami-fritsch-version-backend\assets\php\contact_save.php
-
+//session admin
+require_once("./admin_session.php");
 header('Content-Type: application/json');
 
 require_once("./connexion_bdd.php");

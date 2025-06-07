@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header('Location: login.php');
-    exit();
-}
+//session admin
+require_once("./admin_session.php");
 
 // Connexion à la bdd
 require_once("./connexion_bdd.php");
@@ -13,9 +10,13 @@ try {
   $entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
   $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
   $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
+  $platsCarte = $pdo->query("SELECT id, nom, description, prix, visible FROM carte ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
+
+  $pdo = null;
 
 } catch (PDOException $e) {
-  echo "Erreur lors de la récupération de la base de données." . $e->getMessage();
+  error_log("Erreur BDD admin.php : " . $e->getMessage());
+  die("Une erreur est survenue. Veuillez réessayer plus tard.");
 }
 
 ?>
@@ -80,21 +81,42 @@ try {
 
       <!-- Formulaire Suggestions -->
       <section class="suggestions-admin">
-        <h2>Suggestions de la semaine</h2>
+        <h2>Suggestions</h2>
         <p class="message-suggestions"></p>
         <form method="POST" action="admin_save_suggestions.php" id="suggestions-form">
           <div id="suggestions-list">
+
            <label for="suggestion">Plat :</label>
            <input type="text" name="suggestion" id="suggestion" list="suggestions-list-datalist">
            <datalist id="suggestions-list-datalist"></datalist>
 
            <label for="prix">Prix :</label>
            <input type="text" name="prix" id="prix">
-           <div style="display: inline" id="suggestion-btn-container"></div>
+           <div  id="suggestion-btn-container"></div>
+        
           </div>
           
           <button type="submit" class="cta send">Enregistrer la suggestion</button>
         </form>
+      </section>
+
+      <section class="carte">
+        <h2>Carte</h2>
+        <p class="message-carte"></p>
+
+          <form action="admin_save_carte.php" method="post" id="carte-form">
+            <div class="carte-list">
+
+              <label for="platCarte">Plat :</label>
+              <input type="text" name="platCarte" id="platCarte">
+              <datalist id=carte-list-datalist></datalist>
+
+              <label for="prixCarte">Prix :</label>
+              <input type="text" name="prixCarte" id="prixCarte">
+              <div id="carte-btn-container"></div>
+            </div>
+
+        <button type="submit" class="cta send">Enregistrer la suggestion</button>
       </section>
 
 
@@ -112,5 +134,6 @@ try {
     <script src="../js/partials.js"></script>
     <script src="../js/admin-pdj.js"></script>
     <script src="../js/admin-suggestions.js"></script>
+    <script src="../js/admin-carte.js"></script>
 </body>
 </html>

@@ -53,3 +53,11 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   message TEXT,
   subscribeNews BOOLEAN
 );
+
+CREATe TABLE IF NOT EXISTS carte (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  prix DECIMAL(6,2) NOT NULL,
+  visible TINYINT(1) NOt NULL DEFAULT 1
+)

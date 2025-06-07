@@ -1,11 +1,8 @@
 <?php
 
 // filepath: c:\xampp\htdocs\lami-fritsch-live\assets\php\admin_gestion.php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header('Location: login.php');
-    exit();
-}
+//session admin
+require_once("./admin_session.php");
 
 // Connexion à la bdd
 require_once("./connexion_bdd.php");
@@ -21,6 +18,7 @@ $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER
 
 //Fermeture de la connexion
 $pdo = null;
+
 } catch (PDOException $e) {
     error_log($e->getMessage());
     echo "<script>console.error(" . json_encode($e->getMessage()) . ");</script>";

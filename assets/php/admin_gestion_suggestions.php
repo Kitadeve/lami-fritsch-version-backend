@@ -1,9 +1,6 @@
 <?php
-session_start();
-if (empty($_SESSION['admin'])) {
-    header('Location: login.php');
-    exit();
-}
+//session admin
+require_once("./admin_session.php");
 
 // Connexion à la bdd
 require_once("./connexion_bdd.php");

@@ -7,6 +7,7 @@ if (empty($_SESSION['admin'])) {
 }
 
 require_once("./connexion_bdd.php");
+
 try {
 
 $data = json_decode(file_get_contents('php://input'), true);

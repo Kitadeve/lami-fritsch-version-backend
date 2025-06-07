@@ -6,7 +6,6 @@
 
 main {
     justify-content: center;
-    min-height: 80vh;
 }
 
 .cta:hover {
@@ -29,6 +28,8 @@ h2 {
     position: fixed;
     padding-top: calc(var(--header-height) + 12px) ;
     right: 8px;
+    padding-top: 24px;
+
   }
 
 
@@ -37,13 +38,12 @@ h2 {
     display: block;
     background: red;
     align-self: center;
-    margin: 24px auto;
-    width: auto;
+    /* width: auto; */
 }
 
 .cta.gestion {
   display: block;
-  width: auto;
+  /* width: auto; */
 }
 
 .gestion-table .cta {
@@ -79,6 +79,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   margin: 32px 0;
 }
 
@@ -207,14 +208,8 @@ input.input-success {
 }
 
 
-@media (min-width: 1024px) {
-  .utilities {
-    padding-top: 24px;
-  }
-}
-
 /* Responsive pour le tableau de gestion */
-@media (max-width: 800px) {
+@media (max-width: 1024px) {
   .gestion-table table,
   .gestion-table thead,
   .gestion-table tbody,
@@ -230,6 +225,8 @@ input.input-success {
   }
 
   .gestion-table tr {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 24px;
     border-bottom: 2px solid #eee;
     background: #fff;
@@ -239,11 +236,12 @@ input.input-success {
   }
 
   .gestion-table td {
+    align-self: center;
     text-align: left;
     padding: 12px 16px;
     position: relative;
     min-width: 180px;
-    width: 100%;
+    width: 80%;
     box-sizing: border-box;
   }
 
@@ -251,7 +249,7 @@ input.input-success {
     content: attr(data-label);
     font-weight: bold;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 12px;
     color: #334264;
     font-size: 0.98em;
   }
@@ -259,8 +257,57 @@ input.input-success {
   .gestion-form {
     flex-direction: column;
     align-items: stretch;
-    gap: 8px;
+    gap: 12px;
   }
+
+  .mini-btn {
+    padding: 16px 0;
+  }
+
+  /* Astuce : pour suggestions, regrouper les inputs + form sous forme visuelle */
+.gestion-table tbody tr.suggestion-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #33426411;
+}
+
+.gestion-table tbody tr.suggestion-row td {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  text-align: left;
+  padding: 8px 0;
+}
+
+.gestion-table tbody tr.suggestion-row td.boutons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.utilities {
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  padding: 0;
+  bottom: 20px;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+
+.utilities .cta {
+  position: relative;
+}
+
 }
 
 /* Pour que les labels s'affichent sur mobile */
@@ -268,13 +315,14 @@ input.input-success {
   padding-top: 20px;
 }
 
+
 /* Pour le message que confirme l'affichage ou non d'un suggestion  */
 
 .confirm-display {
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  align-items: center;  gap: 24px;
   top: 50%;
   left: 50%;
   padding: 16px;
@@ -284,6 +332,10 @@ input.input-success {
   border: 1px solid var(--bleu-fritsch);
   border-radius: 10px;
   transition: all 0.5 ease-in;
+}
+
+.confirm-display .btn {
+  display: flex;
 }
 
 .confirm-display .btn .cta {

@@ -11,6 +11,8 @@ if (empty($_SESSION['admin'])) {
 require_once("./connexion_bdd.php");
 
 try{
+
+//Récupération des entrées en plats
 $entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
 $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
 
@@ -113,16 +115,17 @@ $pdo = null;
         </thead>
         <tbody>
           <?php foreach ($suggestions as $sugg): ?>
-            <tr>
-              <form class="gestion-form" method="POST" action="admin_gestion_suggestions.php">
-                <td data-label="Suggestion">
-                  <input class="gestion-input" type="text" name="nouveau_nom" value="<?= htmlspecialchars($sugg['nom']) ?>">
+            <tr class="suggestion-row">
+              <td data-label="Suggestion">
+                <input class="gestion-input" type="text" name="nouveau_nom" value="<?= htmlspecialchars($sugg['nom']) ?>" form="form-<?= $sugg['id'] ?>">
+              </td>
+              <td data-label="Prix">
+                <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($sugg['prix'], 2, '.', '')) ?>" form="form-<?= $sugg['id'] ?>">
+              </td>
+              <td class="boutons">
+                <form class="gestion-form" id="form-<?= $sugg['id'] ?>" method="POST" action="admin_gestion_suggestions.php">
                   <input type="hidden" name="id" value="<?= $sugg['id'] ?>">
-                </td>
-                <td data-label="Prix">
-                  <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($sugg['prix'], 2, '.', '')) ?>">
-                </td>
-                <td class="boutons">
+
                   <button class="mini-btn" type="submit" name="action" value="modifier" title="Modifier">&#9998;</button>
 
                   <?php if ($sugg['visible']): ?>
@@ -132,9 +135,8 @@ $pdo = null;
                   <?php endif; ?>
 
                   <button class="mini-btn delete" type="submit" name="action" value="supprimer" title="Supprimer">&#10006;</button>
-
-                </td>
-              </form>
+                </form>
+              </td>
             </tr>
           <?php endforeach; ?>
         </tbody>

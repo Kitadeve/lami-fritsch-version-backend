@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       params.delete('success');
       const newUrl = window.location.pathname + (params.toString() ? '?' + params.toString() : '');
       window.history.replaceState({}, '', newUrl);
-    }, 2000);
+    }, 4000);
   }
 
   // Optionnel : feedback visuel en temps réel

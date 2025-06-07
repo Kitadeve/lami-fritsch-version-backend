@@ -93,6 +93,15 @@ $pdo = null;
     </section>
 
     <section class="gestion-table">
+
+      <div class="confirm-display">
+        <p class="texte-confirm"></p>
+        <div class="btn">
+          <button class="cta" name="action" value="oui" type="button">Oui</button>
+          <button class="cta" name="action" value="non" type="button">Non</button>
+        </div>
+      </div>
+
       <h2>Suggestions</h2>
       <table>
         <thead>
@@ -124,13 +133,6 @@ $pdo = null;
 
                   <button class="mini-btn delete" type="submit" name="action" value="supprimer" title="Supprimer">&#10006;</button>
 
-                  <!-- <div class="confirm-display">
-                    <p class="texte-confirm"></p>
-                    <div class="btn">
-                      <button class="cta" name="action" value="afficher" type="button">Oui</button>
-                      <button class="cta" name="action" value="non" type="button">Non</button>
-                    </div> -->
-                  </div>
                 </td>
               </form>
             </tr>

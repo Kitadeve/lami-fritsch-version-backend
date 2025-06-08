@@ -78,11 +78,20 @@ function handleResponse(data, message, suggestionInput, prixInput) {
     message.classList.add("message-success");
     suggestionInput.value = "";
     prixInput.value = "";
-    setTimeout(() => message.textContent = "", 2000);
+    setTimeout(() => {
+        message.textContent = "";
+        message.classList.remove("message-success");
+      }, 4000
+    );
     loadSuggestions(); // recharge les suggestions après ajout
   } else {
     message.textContent = "❌ " + data.message;
     message.classList.add("message-error");
+    // setTimeout(() => {
+    //     message.textContent = "";
+    //     message.classList.remove("message-error");
+    //   }, 4000
+    // );
   }
 }
 

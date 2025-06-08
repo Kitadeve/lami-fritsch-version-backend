@@ -12,10 +12,45 @@ if (empty($_SESSION["admin"])) {
     require_once("./connexion_bdd.php");
 
 try {
-    
-    if 
-    
-} catch (PDO $th) {
+    if (
+        !isset($_POST["cartePlat"], $_POST["cartePrix"]) ||
+        trim($_POST["cartePlat"]) === "" ||
+        trim($_POST["cartePrix"]) === ""
+    ) {
+        http_response_code(400);
+        echo json_encode(["success" => false, "message" => "Champs manquants"]);
+        exit();
+    }
+
+    // Nettoyage
+    $nom = trim($_POST["cartePlat"]);
+    $prix = str_replace(",", ".", trim($_POST["cartePrix"]));
+
+    // Vérification du nom (sécurité & longueur)
+    if (mb_strlen($nom) > 255) {
+        http_response_code(400);
+        echo json_encode(["success" => false, "message" => "Nom trop long (100 caractères max)"]);
+        exit();
+    }
+
+    // Vérification du prix (strict format 0.00 à 99.99)
+    if (!preg_match('/^\d{1,2}(\.\d{2})$/', $prix)) {
+        http_response_code(400);
+        echo json_encode(["success" => false, "message" => "Format de prix invalide (ex: 8.50)"]);
+        exit();
+    }
+
+    // Insertion sécurisée
+    $stmt = $pdo->prepare("INSERT INTO carte (nom, prix) VALUES (:nom, :prix)");
+    $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
+    // $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+    $stmt->bindValue(':prix', $prix, PDO::PARAM_STR);
+    $stmt->execute();
+
+    echo json_encode(["success" => true, "message" => "Plat enregistrée avec succès !"]);
+
+    $pdo = null;
+} catch (PDOException $e) {
     http_response_code(500);
     if ($e->getCode() === '23000') {
         // Doublon

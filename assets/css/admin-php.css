@@ -213,7 +213,8 @@ input.input-success {
   border: 2px solid rgb(0, 168, 0);
 }
 
-.message-suggestions.message-success {
+.message-suggestions.message-success,
+.message-carte.message-success {
   align-self: center;
   text-align: center;
   border: 4px solid green;
@@ -224,7 +225,8 @@ input.input-success {
 }
 
 .message.message-error,
-.message-suggestions.message-error {
+.message-suggestions.message-error,
+.message-carte.message-error {
   align-self: center;
   text-align: center;
   border: 4px solid red;

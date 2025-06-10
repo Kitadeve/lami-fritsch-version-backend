@@ -16,6 +16,9 @@ $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
 // Récupération des suggestions
 $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER BY nom")->fetchAll();
 
+// Récupération des plats
+$carte = $pdo->query("SELECT id, nom,  prix, categorie, description, ordre, visible FROM carte ORDER BY nom")->fetchAll();
+
 //Fermeture de la connexion
 $pdo = null;
 
@@ -140,6 +143,63 @@ $pdo = null;
         </tbody>
       </table>
     </section>
+
+<section class="gestion-table">
+  <h2>Carte</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Plat</th>
+        <th>Description</th>
+        <th>Prix (€)</th>
+        <th>Catégorie</th>
+        <th>Ordre</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($carte as $plat): ?>
+        <tr class="carte-row">
+          <td data-label="Plat">
+            <textarea class="gestion-input" type="text" name="nouveau_nom" value="" form="form-carte-<?= $plat['id'] ?>"><?= htmlspecialchars($plat['nom']) ?></textarea>
+          </td>
+          <td data-label="Description">
+            <input class="gestion-input" type="text" name="nouvelle_description" value="<?= htmlspecialchars($plat['description']) ?>" form="form-carte-<?= $plat['id'] ?>">
+          </td>
+          <td data-label="Prix">
+            <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($plat['prix'], 2, '.', '')) ?>" form="form-carte-<?= $plat['id'] ?>">
+          </td>
+          <td data-label="Catégorie">
+            <select class="gestion-input" name="nouvelle_categorie" form="form-carte-<?= $plat['id'] ?>">
+              <option value="plats" <?= $plat['categorie'] === 'plats' ? 'selected' : '' ?>>Plat</option>
+              <option value="tartes_flambees" <?= $plat['categorie'] === 'tartes_flambees' ? 'selected' : '' ?>>Tarte flambée</option>
+              <option value="desserts" <?= $plat['categorie'] === 'desserts' ? 'selected' : '' ?>>Dessert</option>
+            </select>
+          </td>
+          <td data-label="Ordre">
+            <input class="gestion-input" type="number" name="nouvel_ordre" value="<?= (int)$plat['ordre'] ?>" form="form-carte-<?= $plat['id'] ?>" style="width:60px;">
+          </td>
+          <td class="boutons">
+            <form class="gestion-form" id="form-carte-<?= $plat['id'] ?>" method="POST" action="admin_gestion_carte.php">
+              <input type="hidden" name="id" value="<?= $plat['id'] ?>">
+
+              <button class="mini-btn" type="submit" name="action" value="modifier" title="Modifier">&#9998;</button>
+
+              <?php if ($plat['visible']): ?>
+                <button class="mini-btn hide" type="submit" name="action" value="masquer" title="Masquer">&#128683;</button>
+              <?php else: ?>
+                <button class="mini-btn show" type="submit" name="action" value="afficher" title="Afficher">&#128065;</button>
+              <?php endif; ?>
+
+              <button class="mini-btn delete" type="submit" name="action" value="supprimer" title="Supprimer">&#10006;</button>
+            </form>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+</section>
+
   <script src="../js/global.js"></script>
   <script src="../js/partials.js"></script>
   <script src="../js/admin-gestion.js"></script>

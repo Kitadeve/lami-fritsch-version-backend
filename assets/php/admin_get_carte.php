@@ -7,7 +7,7 @@ require_once("./connexion_bdd.php");
 try{
 
 // Pour l'admin : on récupère TOUTES les suggestions
-$carte = $pdo->query("SELECT id, nom, description, prix, visible FROM carte ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
+$carte = $pdo->query("SELECT id, nom, description, prix, ordre, visible FROM carte ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
 
 $pdo = null;
 

@@ -60,4 +60,6 @@ CREATe TABLE IF NOT EXISTS carte (
   description TEXT,
   prix DECIMAL(6,2) NOT NULL,
   visible TINYINT(1) NOt NULL DEFAULT 1
+  categorie VARCHAR(50) ENUM (plats, tartes_flambees, desserts) NOT NULL DEFAULT "plats";
+  ordre INT NOT NULL DEFAULT 0;
 )

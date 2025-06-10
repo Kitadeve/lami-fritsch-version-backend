@@ -9,7 +9,7 @@ function initCarteForm() {
 
   const carteInput = document.getElementById("carte-plat");
   carteInput.addEventListener("input", () => {
-      fillCartePrixIfKnown();
+      fillCarteDescriptionPrixIfKnown();
       updateCarteMiniBtn();
   });
 }
@@ -18,6 +18,7 @@ function handleCarteFormSubmit(e) {
   e.preventDefault();
 
   const cartePlatInput = document.getElementById("carte-plat");
+  const carteDescriptionInput = document.getElementById("carte-description");
   const cartePrixInput = document.getElementById("carte-prix");
   const carteMessage = document.querySelector(".message-carte");
   const form = e.target
@@ -36,7 +37,7 @@ function handleCarteFormSubmit(e) {
   })
 
   .then(response => response.json())
-  .then(data => handleCarteResponse(data, carteMessage, cartePlatInput, cartePrixInput))
+  .then(data => handleCarteResponse(data, carteMessage, cartePlatInput, carteDescriptionInput, cartePrixInput))
   .catch((e) => {
     console.log(e);
     
@@ -75,10 +76,11 @@ function clearCarteErrors(cartePlatInput, cartePrixInput, carteMessage) {
   carteMessage.classList.remove("message-error", "message-success");
 }
 
-function handleCarteResponse(data, carteMessage, cartePlatInput, cartePrixInput) {
+function handleCarteResponse(data, carteMessage, cartePlatInput, carteDescriptionInput, cartePrixInput) {
   if (data.success) {
     carteMessage.textContent = "✅ " + data.message;
     carteMessage.classList.add("message-success");
+    carteDescriptionInput.value = "";
     cartePlatInput.value = "";
     cartePrixInput.value= "";
     setTimeout(() => {
@@ -122,13 +124,19 @@ function populateCarteDatalist(carte) {
   });
 }
 
-function fillCartePrixIfKnown() {
+function fillCarteDescriptionPrixIfKnown() {
   const carteInput = document.getElementById("carte-plat");
   const prixInput = document.getElementById("carte-prix");
+  const descriptionInput = document.getElementById("carte-description")
   const found = allCarte.find(s => s.nom === carteInput.value);
+
+
+ 
   if (found) {
     prixInput.value = parseFloat(found.prix).toFixed(2);
+    descriptionInput.value = found.description;
   }
+
 }
 
 function updateCarteMiniBtn () {
@@ -136,7 +144,7 @@ function updateCarteMiniBtn () {
   const container = document.getElementById("carte-btn-container");
   container.innerHTML = "";
 
-  const found = allCarte.find(s => s.nom == cartePlatInput.value);
+  const found = allCarte.find(s => s.nom === cartePlatInput.value);
   if(!found) return;
 
   const btn = document.createElement("button");
@@ -146,7 +154,7 @@ function updateCarteMiniBtn () {
   btn.innerHTML = found.visible ? "🚫" : "👁";
 
   btn.addEventListener("click", () => {
-    toggleCarteVisibility()
+    toggleCarteVisibility(found)
   });
 
   container.appendChild(btn);
@@ -155,7 +163,7 @@ function updateCarteMiniBtn () {
 function toggleCarteVisibility(carte) {
   fetch("/lami-fritsch-version-backend/assets/php/admin_toggle_carte_visibility.php", {
     method: "POST",
-    headers:  {"Content-typer": "application/json"},
+    headers:  {"Content-Type": "application/json"},
     body: JSON.stringify({
       id: carte.id,
       visible: carte.visible ? 0 : 1
@@ -163,12 +171,12 @@ function toggleCarteVisibility(carte) {
   })
     .then(response => response.json())
     .then(data => {
-      if(data.success) {
-        alert(data.carteMessage || "Erreur lors de la modifiaction.");
+      if(!data.success) {
+        alert(data.message || "Erreur lors de la modification.");
         return;
       }
         carte.visible = carte.visible ? 0 : 1
-        updateMiniBtn();
+        updateCarteMiniBtn();
     })
     .catch(error => {
       alert("Erreur technique ou session expirée.");

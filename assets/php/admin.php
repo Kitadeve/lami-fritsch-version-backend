@@ -115,16 +115,32 @@ try {
           <form action="admin_save_carte.php" method="post" id="carte-form">
             <div class="carte-list">
 
-              <label for="carte-plat">Plat :</label>
-              <input type="text" name="cartePlat" id="carte-plat" list="carte-list-datalist">
-              <datalist id=carte-list-datalist></datalist>
+              <div class="carte-list-un">
 
-              <!-- <label for="carte-description">Description :</label>
-              <input type="text" name="carteDescription" id="carte-description">
-              <datalist id=description-list-datalist></datalist> -->
+                <label for="carte-plat">Plat :</label>
+                <input type="text" name="cartePlat" id="carte-plat" list="carte-list-datalist">
+                <datalist id=carte-list-datalist></datalist>
 
-              <label for="carte-prix">Prix :</label>
-              <input type="text" name="cartePrix" id="carte-prix">
+                <label for="carte-description">Description :</label>
+                <input type="text" name="carteDescription" id="carte-description">
+                <datalist id=description-list-datalist></datalist>
+
+              </div>
+              <div class="carte-list-deux">
+
+                <label for="carte-categorie">Catégorie :</label>
+                <select id="carte-categorie" name="categorie">
+                  <option value="plats">Plats</option>
+                  <option value="tartes_flambees">Tarte flambées</option>
+                  <option value="desserts">Desserts</option>
+                </select>
+
+
+                <label for="carte-prix">Prix :</label>
+                <input type="text" name="cartePrix" id="carte-prix">
+                
+
+              </div>
               <div id="carte-btn-container"></div>
             </div>
 

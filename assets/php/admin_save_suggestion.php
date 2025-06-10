@@ -27,12 +27,13 @@ try {
 
     // Nettoyage
     $nom = trim($_POST["suggestion"]);
+    $description = trim($_POST["description"]);
     $prix = str_replace(",", ".", trim($_POST["prix"]));
 
     // Vérification du nom (sécurité & longueur)
-    if (mb_strlen($nom) > 255) {
+    if (mb_strlen($nom) > 255 || mb_strlen($description) > 255) {
         http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Nom trop long (100 caractères max)"]);
+        echo json_encode(["success" => false, "message" => "Nom trop long (255 caractères max)"]);
         exit();
     }
 

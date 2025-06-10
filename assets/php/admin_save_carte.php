@@ -2,6 +2,10 @@
 session_start();
 header('Content-Type: application/json');
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Sécurité : Vérification de session admin
 if (empty($_SESSION["admin"])) {
     http_response_code(403);
@@ -24,12 +28,14 @@ try {
 
     // Nettoyage
     $nom = trim($_POST["cartePlat"]);
+    $description = trim($_POST["carteDescription"]);
     $prix = str_replace(",", ".", trim($_POST["cartePrix"]));
+    $categorie = $_POST["categorie"];
 
     // Vérification du nom (sécurité & longueur)
-    if (mb_strlen($nom) > 255) {
+    if (mb_strlen($nom) > 255 || mb_strlen($description) > 255) {
         http_response_code(400);
-        echo json_encode(["success" => false, "message" => "Nom trop long (100 caractères max)"]);
+        echo json_encode(["success" => false, "message" => "Nom trop long (255 caractères max)"]);
         exit();
     }
 
@@ -41,10 +47,11 @@ try {
     }
 
     // Insertion sécurisée
-    $stmt = $pdo->prepare("INSERT INTO carte (nom, prix) VALUES (:nom, :prix)");
+    $stmt = $pdo->prepare("INSERT INTO carte (nom, description, categorie, prix) VALUES (:nom, :description, :categorie, :prix)");
     $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
-    // $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+    $stmt->bindValue(':description', $description, PDO::PARAM_STR);
     $stmt->bindValue(':prix', $prix, PDO::PARAM_STR);
+    $stmt->bindValue(':categorie', $categorie, PDO::PARAM_STR);
     $stmt->execute();
 
     echo json_encode(["success" => true, "message" => "Plat enregistrée avec succès !"]);
@@ -59,5 +66,6 @@ try {
         // Log interne seulement, message neutre
         error_log("Erreur admin_save_suggestions.php : " . $e->getMessage());
         echo json_encode(["success" => false, "message" => "Erreur interne. Veuillez réessayer."]);
-    }    //throw $th;
+    }  
+    exit();
 }

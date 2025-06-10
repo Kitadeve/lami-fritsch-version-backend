@@ -69,11 +69,30 @@ label {
   margin: 0 auto;
 }
 
-input {
+input, select {
     margin-right: 16px;
     padding: 8px 16px;
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+}
+
+.carte-list {
+  display: flex;
+  gap: 24px;
+}
+
+.carte-list .carte-list-un,
+.carte-list .carte-list-deux{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+
+#carte-form input,
+#carte-form select {
+  display: block;
+  margin-bottom: 16px;
 }
 
 #suggestions-list{
@@ -115,9 +134,8 @@ input {
 }
 
 .gestion-table th, .gestion-table td {
-  padding: 12px 16px;
-  text-align: center;
-  font-size: 1.1em;
+  padding: 8px 6px;
+  font-size: 1em;
 }
 
 .gestion-table th {
@@ -134,6 +152,11 @@ input {
   align-items: center;
   gap: 8px;
   justify-content: center;
+}
+
+#carte-btn-container {
+  display: flex;
+  align-items: center;
 }
 
 .gestion-input {

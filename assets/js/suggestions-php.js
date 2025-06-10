@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
       // Sélectionne le bon conteneur pour les suggestions dynamiques
-      const cardsContainer = document.querySelector('.carte-suggestions .cards-plats-suggestions');
+      const cardsContainer = document.querySelector('.suggestions .cards-plats-suggestions');
       if (!cardsContainer) return;
       cardsContainer.innerHTML = '';
       if (suggestions.length === 0) {

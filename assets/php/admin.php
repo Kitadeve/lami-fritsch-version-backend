@@ -16,7 +16,7 @@ try {
 
 } catch (PDOException $e) {
   error_log("Erreur BDD admin.php : " . $e->getMessage());
-  die("Une erreur est survenue. Veuillez réessayer plus tard.");
+  die("Une erreur est survenue. Veuillez réessayer plus tard. " . htmlspecialchars($e->getMessage()));
 }
 
 ?>
@@ -31,6 +31,14 @@ try {
   <link rel="stylesheet" href="../css/admin-php.css">
 </head>
 <body>
+
+  <div class="confirm-display">
+    <p class="texte-confirm"></p>
+    <div class="btn">
+      <button id="confirm-visibility-oui" class="cta" name="action" value="oui" type="button">Oui</button>
+      <button id="confirm-visibility-non" class="cta" name="action" value="non" type="button">Non</button>
+    </div>
+  </div>
 
   <div class="utilities">
     <a class="cta gestion" href="admin_gestion.php">Gestion</a>
@@ -108,8 +116,8 @@ try {
             <div class="carte-list">
 
               <label for="carte-plat">Plat :</label>
-              <input type="text" name="cartePlat" id="carte-plat">
-              <datalist id=plat-list-datalist></datalist>
+              <input type="text" name="cartePlat" id="carte-plat" list="carte-list-datalist">
+              <datalist id=carte-list-datalist></datalist>
 
               <!-- <label for="carte-description">Description :</label>
               <input type="text" name="carteDescription" id="carte-description">

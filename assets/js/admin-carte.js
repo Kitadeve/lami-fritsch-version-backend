@@ -61,7 +61,7 @@ function validateCarteForm(cartePlatInput, cartePrixInput, carteMessage) {
   if (!prixRegex.test(prixCarte)) {
     carteMessage.textContent = "❌ Format de prix invalide";
     carteMessage.classList.add("message-error");
-    prixInput.classList.add("input-error");
+    cartePrixInput.classList.add("input-error");
     return false;
   }
 

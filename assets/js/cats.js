@@ -1,5 +1,4 @@
 const reload = document.querySelector("#reload");
-console.log('hello cats');
 
 function getCat() {
   const chats = document.querySelector(".chats");
@@ -10,7 +9,6 @@ function getCat() {
       chats.innerHTML = "";
       const catData = result[0];
       const img = document.createElement("img");
-      console.log(result);
       
       img.src = catData.url;
       img.alt = "Photo de chat aléatoire";

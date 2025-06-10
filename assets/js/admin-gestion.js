@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
       lastClickedButton = btn;
 
       confirmation.classList.add("show");
-      confirmTexte.textContent = "Afficher la suggestion. Confirmer ?";
+      confirmTexte.textContent = "Masquer la suggestion. Confirmer ?";
     })
   });
 

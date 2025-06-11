@@ -18,7 +18,7 @@ function handleCarteFormSubmit(e) {
   e.preventDefault();
 
   const cartePlatInput = document.getElementById("carte-plat");
-  const carteDescriptionInput = document.getElementById("carte-description");
+  const carteDescriptionInput = document.getElementsByClassName("carte-description-input");
   const cartePrixInput = document.getElementById("carte-prix");
   const carteMessage = document.querySelector(".message-carte");
   const form = e.target
@@ -127,14 +127,14 @@ function populateCarteDatalist(carte) {
 function fillCarteDescriptionPrixIfKnown() {
   const carteInput = document.getElementById("carte-plat");
   const prixInput = document.getElementById("carte-prix");
-  const descriptionInput = document.getElementById("carte-description")
+  // const descriptionInput = document.getElementById("carte-description")
   const found = allCarte.find(s => s.nom === carteInput.value);
 
 
  
   if (found) {
     prixInput.value = parseFloat(found.prix).toFixed(2);
-    descriptionInput.value = found.description;
+    // descriptionInput.value = found.description;
   }
 
 }
@@ -199,3 +199,17 @@ function clearCarteForm() {
   cartePrixInput.value = "";
   container.innerHTML = ""; // supprime le mini bouton
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  const addBtn = document.getElementById("add-description-btn");
+  const container = document.getElementById("carte-descriptions-container");
+  if (addBtn && container) {
+    addBtn.addEventListener("click", function() {
+      const input = document.createElement("input");
+      input.type = "text";
+      input.name = "carteDescriptions[]";
+      input.className = "carte-description-input";
+      container.appendChild(input);
+    });
+  }
+});

@@ -17,7 +17,14 @@ $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
 $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER BY nom")->fetchAll();
 
 // Récupération des plats
-$carte = $pdo->query("SELECT id, nom,  prix, categorie, description, ordre, visible FROM carte ORDER BY nom")->fetchAll();
+$carte = $pdo->query("SELECT id, nom,  prix, categorie, ordre, visible FROM carte ORDER BY nom")->fetchAll();
+
+foreach ($carte as &$plat) {
+    $stmtDesc = $pdo->prepare("SELECT id, description FROM carte_descriptions WHERE carte_id = ?");
+    $stmtDesc->execute([$plat['id']]);
+    $plat['descriptions'] = $stmtDesc->fetchAll(PDO::FETCH_ASSOC);
+}
+unset($plat);
 
 //Fermeture de la connexion
 $pdo = null;
@@ -164,7 +171,19 @@ $pdo = null;
             <textarea class="gestion-input" type="text" name="nouveau_nom" value="" form="form-carte-<?= $plat['id'] ?>"><?= htmlspecialchars($plat['nom']) ?></textarea>
           </td>
           <td data-label="Description">
-            <input class="gestion-input" type="text" name="nouvelle_description" value="<?= htmlspecialchars($plat['description']) ?>" form="form-carte-<?= $plat['id'] ?>">
+            <?php
+              if (!empty($plat['descriptions'])) {
+                foreach ($plat['descriptions'] as $desc) {
+                  // Ajoute un textarea pour chaque description existante
+                  echo '<textarea class="gestion-input" name="descriptions[]">' . htmlspecialchars($desc['description']) . '</textarea>';
+                  // Ajoute un champ caché pour l'id de la description
+                  echo '<input type="hidden" name="description_ids[]" value="' . (int)$desc['id'] . '">';
+                }
+              } else {
+                // Champ vide si aucune description
+                echo '<textarea class="gestion-input" name="descriptions[]"></textarea>';
+              }
+            ?>
           </td>
           <td data-label="Prix">
             <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($plat['prix'], 2, '.', '')) ?>" form="form-carte-<?= $plat['id'] ?>">
@@ -202,7 +221,7 @@ $pdo = null;
 
   <script src="../js/global.js"></script>
   <script src="../js/partials.js"></script>
-  <script src="../js/admin-gestion.js"></script>
+  <script src="../js/admin-gestion-suggestions.js"></script>
   </main>
   <?php //require_once("../partials/footer.php"); ?> 
 

@@ -11,7 +11,7 @@ if (empty($_SESSION['admin'])) {
 require_once("./connexion_bdd.php");
 
 try{
-$carte = $pdo->query("SELECT id, nom, description, ordre prix, categorie FROM carte WHERE visible = 1 ORDER BY ordre")->fetchAll(PDO::FETCH_ASSOC);
+$carte = $pdo->query("SELECT id, nom, ordre prix, categorie FROM carte WHERE visible = 1 ORDER BY ordre")->fetchAll(PDO::FETCH_ASSOC);
 
 header('Content-Type: application/json');
 echo json_encode($carte);

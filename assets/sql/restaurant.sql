@@ -57,12 +57,11 @@ CREATE TABLE IF NOT EXISTS contact_messages (
 CREATE TABLE IF NOT EXISTS carte (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(255) NOT NULL UNIQUE,
-  description TEXT,
   prix DECIMAL(6,2) NOT NULL,
-  visible TINYINT(1) NOt NULL DEFAULT 1
-  categorie VARCHAR(50) ENUM (plats, tartes_flambees, desserts) NOT NULL DEFAULT "plats";
-  ordre INT NOT NULL DEFAULT 0;
-)
+  visible TINYINT(1) NOT NULL DEFAULT 1,
+  categorie ENUM('plats', 'tartes_flambees', 'desserts') NOT NULL DEFAULT 'plats',
+  ordre INT NOT NULL DEFAULT 0
+);
 
 CREATE TABLE IF NOT EXISTS carte_descriptions (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -70,6 +69,7 @@ CREATE TABLE IF NOT EXISTS carte_descriptions (
   description VARCHAR(255) NOT NULL,
   FOREIGN KEY (carte_id) REFERENCES carte(id) ON DELETE CASCADE
 );
+
 
 
 -- INSERT INTO carte (nom, categorie, prix) VALUES ("", "", "");

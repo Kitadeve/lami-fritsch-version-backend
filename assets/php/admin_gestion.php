@@ -69,7 +69,7 @@ $pdo = null;
             <td data-label="Entrée">
               <?php if ($entree): ?>
                 <form class="gestion-form" method="POST" action="admin_gestion_entree.php">
-                  <input class="gestion-input" type="text" name="nouveau_nom" value="<?= htmlspecialchars($entree['nom']) ?>">
+                  <textarea class="gestion-input" type="text" name="nouveau_nom" value=""><?= htmlspecialchars($entree['nom']) ?></textarea>
                   <input type="hidden" name="id" value="<?= $entree['id'] ?>">
                   <button class="mini-btn" type="submit" name="action" value="modifier" title="Modifier">&#9998;</button>
                   <button class="mini-btn delete" type="submit" name="action" value="supprimer" title="Supprimer">&#10006;</button>
@@ -118,7 +118,7 @@ $pdo = null;
           <?php foreach ($suggestions as $sugg): ?>
             <tr class="suggestion-row">
               <td data-label="Suggestion">
-                <input class="gestion-input" type="text" name="nouveau_nom" value="<?= htmlspecialchars($sugg['nom']) ?>" form="form-<?= $sugg['id'] ?>">
+                <textarea class="gestion-input" type="text" name="nouveau_nom" value="" form="form-<?= $sugg['id'] ?>"><?= htmlspecialchars($sugg['nom']) ?></textarea>
               </td>
               <td data-label="Prix">
                 <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($sugg['prix'], 2, '.', '')) ?>" form="form-<?= $sugg['id'] ?>">
@@ -144,7 +144,7 @@ $pdo = null;
       </table>
     </section>
 
-<section class="gestion-table">
+<section class="gestion-table carte">
   <h2>Carte</h2>
   <table>
     <thead>
@@ -164,7 +164,7 @@ $pdo = null;
             <textarea class="gestion-input" type="text" name="nouveau_nom" value="" form="form-carte-<?= $plat['id'] ?>"><?= htmlspecialchars($plat['nom']) ?></textarea>
           </td>
           <td data-label="Description">
-            <input class="gestion-input" type="text" name="nouvelle_description" value="<?= htmlspecialchars($plat['description']) ?>" form="form-carte-<?= $plat['id'] ?>">
+            <textarea class="gestion-input" type="text" name="nouvelle_description" value="" form="form-carte-<?= $plat['id'] ?>"><?= htmlspecialchars($plat['description']) ?></textarea>
           </td>
           <td data-label="Prix">
             <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($plat['prix'], 2, '.', '')) ?>" form="form-carte-<?= $plat['id'] ?>">

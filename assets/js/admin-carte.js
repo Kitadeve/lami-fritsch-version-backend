@@ -183,3 +183,12 @@ function toggleCarteVisibility(carte) {
       console.log(error);
     });
 }
+
+document.getElementById('add-description-btn').addEventListener('click', function() {
+  const container = document.getElementById('carte-descriptions-container');
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.name = 'carteDescriptions[]';
+  input.className = 'carte-description-input';
+  container.appendChild(input);
+});

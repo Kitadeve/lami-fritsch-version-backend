@@ -54,6 +54,21 @@ try {
     $stmt->bindValue(':categorie', $categorie, PDO::PARAM_STR);
     $stmt->execute();
 
+    $carte_id = $pdo->lastInsertId();
+
+    if (!empty($_POST['carteDescriptions']) && is_array($_POST['carteDescriptions'])) {
+        $stmtDesc = $pdo->prepare("INSERT INTO carte_descriptions (carte_id, description) VALUES (:carte_id, :description)");
+        foreach ($_POST['carteDescriptions'] as $desc) {
+            $desc = trim($desc);
+            if ($desc !== '') {
+                $stmtDesc->execute([
+                    ':carte_id' => $carte_id,
+                    ':description' => $desc
+                ]);
+            }
+        }
+    }
+
     echo json_encode(["success" => true, "message" => "Plat enregistrée avec succès !"]);
 
     $pdo = null;

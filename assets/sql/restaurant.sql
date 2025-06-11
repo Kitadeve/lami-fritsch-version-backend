@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   subscribeNews BOOLEAN
 );
 
-CREATe TABLE IF NOT EXISTS carte (
+CREATE TABLE IF NOT EXISTS carte (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(255) NOT NULL UNIQUE,
   description TEXT,
@@ -63,3 +63,13 @@ CREATe TABLE IF NOT EXISTS carte (
   categorie VARCHAR(50) ENUM (plats, tartes_flambees, desserts) NOT NULL DEFAULT "plats";
   ordre INT NOT NULL DEFAULT 0;
 )
+
+CREATE TABLE IF NOT EXISTS carte_descriptions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  carte_id INT NOT NULL,
+  description VARCHAR(255) NOT NULL,
+  FOREIGN KEY (carte_id) REFERENCES carte(id) ON DELETE CASCADE
+);
+
+
+-- INSERT INTO carte (nom, categorie, prix) VALUES ("", "", "");

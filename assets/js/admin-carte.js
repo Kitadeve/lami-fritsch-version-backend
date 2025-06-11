@@ -171,15 +171,31 @@ function toggleCarteVisibility(carte) {
   })
     .then(response => response.json())
     .then(data => {
+
+      
       if(!data.success) {
         alert(data.message || "Erreur lors de la modification.");
         return;
       }
         carte.visible = carte.visible ? 0 : 1
         updateCarteMiniBtn();
+        clearCarteForm();
     })
     .catch(error => {
       alert("Erreur technique ou session expirée.");
       console.log(error);
     });
+}
+
+function clearCarteForm() {
+
+  const cartePlatInput = document.getElementById("carte-plat");
+  const carteDescriptionInput = document.getElementById("carte-description");
+  const cartePrixInput = document.getElementById("carte-prix");
+  const container = document.getElementById("carte-btn-container");
+
+  cartePlatInput.value = "";
+  carteDescriptionInput.value = "";
+  cartePrixInput.value = "";
+  container.innerHTML = ""; // supprime le mini bouton
 }

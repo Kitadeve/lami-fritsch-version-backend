@@ -167,9 +167,20 @@ function toggleVisibility(suggestion) {
       }
       suggestion.visible = suggestion.visible ? 0 : 1;
       updateMiniBtn();
+      clearForm();
     })
     .catch(error => {
       alert("Erreur technique ou session expirée.");
       console.error(error);
     });
+}
+
+function clearForm() {
+  const suggestionInput = document.getElementById("suggestion");
+  const prixInput = document.getElementById("prix");
+  const container = document.getElementById("carte-btn-container");
+
+  suggestionInput.value = "";
+  prixInput.value = "";
+  container.innerHTML = ""; // supprime le mini bouton 
 }

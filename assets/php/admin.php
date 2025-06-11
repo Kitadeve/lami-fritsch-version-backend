@@ -121,6 +121,7 @@ try {
                 <input type="text" name="cartePlat" id="carte-plat" list="carte-list-datalist">
                 <datalist id=carte-list-datalist></datalist>
 
+
                 <!-- <label for="carte-description">Description :</label>
                 <input type="text" name="carteDescription" id="carte-description">
                 <datalist id=description-list-datalist></datalist> -->
@@ -129,7 +130,6 @@ try {
                   <input type="text" name="carteDescriptions[]" class="carte-description-input">
                 </div>
                 <button type="button" id="add-description-btn" class="cta">+ Ajouter une description</button>
-
 
               </div>
               <div class="carte-list-deux">

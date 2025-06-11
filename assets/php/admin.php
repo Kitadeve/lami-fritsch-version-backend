@@ -10,7 +10,7 @@ try {
   $entrees = $pdo->query("SELECT id, nom FROM entrees ORDER BY nom")->fetchAll();
   $plats = $pdo->query("SELECT id, nom FROM plats ORDER BY nom")->fetchAll();
   $suggestions = $pdo->query("SELECT id, nom, prix, visible FROM suggestions ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
-  $platsCarte = $pdo->query("SELECT id, nom, description, prix, visible FROM carte ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
+  $platsCarte = $pdo->query("SELECT id, nom, prix, visible FROM carte ORDER BY nom")->fetchAll(PDO::FETCH_ASSOC);
 
   $pdo = null;
 
@@ -120,17 +120,16 @@ try {
                 <label for="carte-plat">Plat :</label>
                 <input type="text" name="cartePlat" id="carte-plat" list="carte-list-datalist">
                 <datalist id=carte-list-datalist></datalist>
-<!-- 
-                <label for="carte-description">Description :</label>
+
+
+                <!-- <label for="carte-description">Description :</label>
                 <input type="text" name="carteDescription" id="carte-description">
                 <datalist id=description-list-datalist></datalist> -->
-
                 <label>Descriptions :</label>
                 <div id="carte-descriptions-container">
                   <input type="text" name="carteDescriptions[]" class="carte-description-input">
-                <button type="button" id="add-description-btn" class="cta">+ Ajouter une description</button>
-
                 </div>
+                <button type="button" id="add-description-btn" class="cta">+ Ajouter une description</button>
 
               </div>
               <div class="carte-list-deux">

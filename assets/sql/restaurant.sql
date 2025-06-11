@@ -68,8 +68,8 @@ CREATE TABLE IF NOT EXISTS carte_descriptions (
   carte_id INT NOT NULL,
   description VARCHAR(255) NOT NULL,
   FOREIGN KEY (carte_id) REFERENCES carte(id) ON DELETE CASCADE
-);
 
+);
 
 
 -- INSERT INTO carte (nom, categorie, prix) VALUES ("", "", "");

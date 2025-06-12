@@ -12,7 +12,7 @@
   <div id="burger-overlap" class="burger-overlap" aria-label="Menu mobile">
     <nav class="liens" role="navigation" aria-label="Menu mobile">
       <ul>
-        <li><a href="/lami-fritsch-version-backend/carte-et-menus.html">Carte et menus</a></li>
+        <li><a href="/lami-fritsch-version-backend/carte-et-menus.php">Carte et menus</a></li>
         <li><a href="/lami-fritsch-version-backend/reservations.html">Réservations</a></li>
         <li><a href="/lami-fritsch-version-backend/contact.html">Groupe</a></li>
         <li class="mobile-only"><a href="/lami-fritsch-version-backend/mentions-legales.html">Mentions légales</a></li>

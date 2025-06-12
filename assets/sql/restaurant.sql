@@ -54,6 +54,10 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   subscribeNews BOOLEAN
 );
 
+drop table if exists carte_descriptions;
+
+drop table if exists carte;
+
 CREATE TABLE IF NOT EXISTS carte (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nom VARCHAR(255) NOT NULL UNIQUE,
@@ -62,6 +66,7 @@ CREATE TABLE IF NOT EXISTS carte (
   categorie ENUM('plats', 'tartes_flambees', 'desserts') NOT NULL DEFAULT 'plats',
   ordre INT NOT NULL DEFAULT 0
 );
+
 
 CREATE TABLE IF NOT EXISTS carte_descriptions (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -72,4 +77,46 @@ CREATE TABLE IF NOT EXISTS carte_descriptions (
 );
 
 
--- INSERT INTO carte (nom, categorie, prix) VALUES ("", "", "");
+INSERT INTO carte (nom, categorie, prix, ordre, visible)
+VALUES
+  ('Saumon fumé par nos soins', 'plats', 0, 13.50, 1),
+  ('Kaesknepfle à la crème', 'plats', 1, 16.00, 1),
+  ('Kaesknepfle à la paysanne', 'plats', 2, 16.90, 1),
+  ('Joues de porc braisées au pinot noir', 3, 'plats', 16.50, 1),
+  ('Waedele braisé à la bière', 'plats', 4, 18.90, 1),
+  ('Rognons de veaux à la moutarde', 5, 'plats', 19.90, 1),
+  ('Bouchées à la reine', 'plats', 6, 18.50, 1),
+  ('Cordon bleu de veau', 'plats', 7, 22.00, 1),
+  ('Cordon bleu de veau munster', 8, 'plats', 24.00, 1),
+  ('Bibeleskaes maison', 'plats', 9, 22.00, 1),
+
+  ('Tradition', 'tartes_flambees', 1, 9.50, 1),
+  ('Gratinée', 'tartes_flambees', 2, 10.50, 1),
+  ('Champignons', 'tartes_flambees', 3, 10.50, 1),
+  ('Champignons gratinée', 'tartes_flambees', 4, 11.50, 1),
+  ('Munster', 'tartes_flambees', 5, 12.00, 1),
+  ('Pommes', 'tartes_flambees', 6, 12.00, 1),
+
+  ('Tarte du moment', 'desserts', 1, 5.20, 1),
+  ('Crème brulée à la fève de tonka', 2, 'desserts', 6.10, 1),
+  ('Vacherin glacé', 'desserts', 3, 6.80, 1),
+  ('Kougelhopf glacé maison au kirsch', 4, 'desserts', 6.50, 1)
+;
+
+INSERT INTO carte_descriptions (carte_id, description)
+VALUES
+  ((SELECT id FROM carte WHERE nom='Saumon fumé par nos soins'), 'Toast de pain de campagne, crème de raifort'),
+  ((SELECT id FROM carte WHERE nom='Kaesknepfle à la crème'), 'Ciboulette'),
+  ((SELECT id FROM carte WHERE nom='Kaesknepfle à la paysanne'), 'Croûtons, lardons, champignons'),
+  ((SELECT id FROM carte WHERE nom='Cordon bleu de veau'), 'Sauce crème'),
+  ((SELECT id FROM carte WHERE nom='Cordon bleu de veau munster'), 'Sauce crème'),
+  ((SELECT id FROM carte WHERE nom='Bibeleskaes maison'), 'Supplément jambon forêt noir : 3€'),
+  ((SELECT id FROM carte WHERE nom='Bibeleskaes maison'),  'Supplément saumon fumé maison : 4,50€'),
+  ((SELECT id FROM carte WHERE nom='Bibeleskaes maison'), 'Supplément munster : 3€'),
+  ((SELECT id FROM carte WHERE nom='Tradition'), 'Crème, oignons, lardons'),
+  ((SELECT id FROM carte WHERE nom='Gratinée'), 'Crème, oignons, lardons, emmental'),
+  ((SELECT id FROM carte WHERE nom='Champignons'), 'Crème, oignons, lardons, champignons'),
+  ((SELECT id FROM carte WHERE nom='Champignons gratinée'), 'Crème, oignons, lardons, champignons, emmental'),
+  ((SELECT id FROM carte WHERE nom='Munster'), 'Crème, oignons, lardons, munster'),
+  ((SELECT id FROM carte WHERE nom='Pommes'), 'Canelle, flambée au calvados')
+;

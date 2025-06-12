@@ -1,21 +1,19 @@
 Array
 (
-    [nouveau_nom] => Bibeleskaes maison
+    [nouveau_nom] => Saumon fumé par nos soins
     [descriptions] => Array
         (
-            [0] => Supplément Munster : 3€
-            [1] => zeagtz
+            [0] => Toast de pain de campagne, crème de raifort
         )
 
     [description_ids] => Array
         (
             [0] => 1
-            [1] => 
         )
 
-    [nouveau_prix] => 23.00
+    [nouveau_prix] => 13.50
     [nouvelle_categorie] => plats
     [nouvel_ordre] => 0
-    [id] => 18
+    [id] => 1
     [action] => modifier
 )

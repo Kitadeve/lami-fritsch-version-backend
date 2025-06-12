@@ -456,3 +456,16 @@ th, td {
     font-weight: bold;
   }
 } */
+
+.carte-form textarea,
+.carte-form input,
+.carte-form select {
+  margin-right: 8px;
+}
+.carte-form .mini-btn {
+  margin-left: 4px;
+}
+
+.carte table {
+  padding: 8px;
+}

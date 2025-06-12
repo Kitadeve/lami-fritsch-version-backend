@@ -1,7 +1,6 @@
-
 document.addEventListener('DOMContentLoaded', function() {
   // Confirmation pour la suppression
-  document.querySelectorAll('button[name="action"][value="supprimer"]').forEach(btn => {
+  document.querySelectorAll('.suggestions-table button[name="action"][value="supprimer"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       if (!confirm('Confirmer la suppression ? Cette action est irréversible.')) {
         e.preventDefault();
@@ -10,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // Confirmation pour la modification
-  document.querySelectorAll('button[name="action"][value="modifier"]').forEach(btn => {
+  document.querySelectorAll('.suggestions-table button[name="action"][value="modifier"]').forEach(btn => {
     btn.addEventListener('click', function(e) {
       if (!confirm('Confirmer la modification ?')) {
         e.preventDefault();
@@ -19,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   //confirmation pour la visibilité
-  const btnShow = document.querySelectorAll("button[name='action'][value='afficher']");
-  const btnHide = document.querySelectorAll("button[name='action'][value='masquer']");
+  const btnShow = document.querySelectorAll('.suggestions-table button[name="action"][value="afficher"]');
+  const btnHide = document.querySelectorAll('.suggestions-table button[name="action"][value="masquer"]');
   const btnOui = document.querySelector("button[name='action'][value='oui']");
   const btnNon = document.querySelectorAll("button[name='action'][value='non']");
   const confirmation = document.querySelector(".confirm-display");
@@ -53,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function() {
   btnHide.forEach(btn => {
     btn.addEventListener("click", function (e) {
       e.preventDefault();
-
+      console.log("clique");
+      
       const form = btn.closest("form");
       const id = form.querySelector("input[name='id']").value;
 
@@ -157,4 +157,6 @@ document.addEventListener('DOMContentLoaded', function() {
     textarea.addEventListener('input', resize);
     resize(); // Redimensionne au chargement
   });
+
+  const suggestionForms = document.querySelectorAll('.suggestion-form');
 });

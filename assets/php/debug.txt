@@ -1,0 +1,21 @@
+Array
+(
+    [nouveau_nom] => Bibeleskaes maison
+    [descriptions] => Array
+        (
+            [0] => Supplément Munster : 3€
+            [1] => zeagtz
+        )
+
+    [description_ids] => Array
+        (
+            [0] => 1
+            [1] => 
+        )
+
+    [nouveau_prix] => 23.00
+    [nouvelle_categorie] => plats
+    [nouvel_ordre] => 0
+    [id] => 18
+    [action] => modifier
+)

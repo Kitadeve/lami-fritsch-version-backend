@@ -113,7 +113,7 @@ $pdo = null;
       </div>
 
       <h2>Suggestions</h2>
-      <table>
+      <table class="suggestions-table">
         <thead>
           <tr>
             <th>Suggestion</th>
@@ -131,7 +131,7 @@ $pdo = null;
                 <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($sugg['prix'], 2, '.', '')) ?>" form="form-<?= $sugg['id'] ?>">
               </td>
               <td class="boutons">
-                <form class="gestion-form" id="form-<?= $sugg['id'] ?>" method="POST" action="admin_gestion_suggestions.php">
+                <form class="gestion-form suggestion-form" id="form-<?= $sugg['id'] ?>" method="POST" action="admin_gestion_suggestions.php">
                   <input type="hidden" name="id" value="<?= $sugg['id'] ?>">
 
                   <button class="mini-btn" type="submit" name="action" value="modifier" title="Modifier">&#9998;</button>
@@ -167,51 +167,34 @@ $pdo = null;
     <tbody>
       <?php foreach ($carte as $plat): ?>
         <tr class="carte-row">
-          <td data-label="Plat">
-            <textarea class="gestion-input" type="text" name="nouveau_nom" value="" form="form-carte-<?= $plat['id'] ?>"><?= htmlspecialchars($plat['nom']) ?></textarea>
-          </td>
-          <td data-label="Description">
-
-            <?php
-              if (!empty($plat['descriptions'])) {
-                foreach ($plat['descriptions'] as $desc) {
-                  // Ajoute un textarea pour chaque description existante
-                  echo '<textarea class="gestion-input" name="descriptions[]">' . htmlspecialchars($desc['description']) . '</textarea>';
-                  // Ajoute un champ caché pour l'id de la description
-                  echo '<input type="hidden" name="description_ids[]" value="' . (int)$desc['id'] . '">';
+          <td colspan="6" style="padding:0;">
+            <form class="gestion-form carte-form" id="form-carte-<?= $plat['id'] ?>" method="POST" action="admin_gestion_carte.php" style="display:flex;align-items:center;gap:8px;width:100%;">
+              <textarea class="gestion-input" name="nouveau_nom" style="min-width:120px;"><?= htmlspecialchars($plat['nom']) ?></textarea>
+              <?php
+                if (!empty($plat['descriptions'])) {
+                  foreach ($plat['descriptions'] as $desc) {
+                    echo '<textarea class="gestion-input" name="descriptions[]" style="min-width:120px;">' . htmlspecialchars($desc['description']) . '</textarea>';
+                    echo '<input type="hidden" name="description_ids[]" value="' . (int)$desc['id'] . '">';
+                  }
+                } else {
+                  echo '<textarea class="gestion-input" name="descriptions[]" style="min-width:120px;"></textarea>';
                 }
-              } else {
-                // Champ vide si aucune description
-                echo '<textarea class="gestion-input" name="descriptions[]"></textarea>';
-              }
-            ?>
-
-          </td>
-          <td data-label="Prix">
-            <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($plat['prix'], 2, '.', '')) ?>" form="form-carte-<?= $plat['id'] ?>">
-          </td>
-          <td data-label="Catégorie">
-            <select class="gestion-input" name="nouvelle_categorie" form="form-carte-<?= $plat['id'] ?>">
-              <option value="plats" <?= $plat['categorie'] === 'plats' ? 'selected' : '' ?>>Plat</option>
-              <option value="tartes_flambees" <?= $plat['categorie'] === 'tartes_flambees' ? 'selected' : '' ?>>Tarte flambée</option>
-              <option value="desserts" <?= $plat['categorie'] === 'desserts' ? 'selected' : '' ?>>Dessert</option>
-            </select>
-          </td>
-          <td data-label="Ordre">
-            <input class="gestion-input" type="number" name="nouvel_ordre" value="<?= (int)$plat['ordre'] ?>" form="form-carte-<?= $plat['id'] ?>" style="width:60px;">
-          </td>
-          <td class="boutons">
-            <form class="gestion-form" id="form-carte-<?= $plat['id'] ?>" method="POST" action="admin_gestion_carte.php">
+              ?>
+              <button type="button" class="mini-btn add-description" title="Ajouter une description">+</button>
+              <input class="gestion-input" type="text" name="nouveau_prix" value="<?= htmlspecialchars(number_format($plat['prix'], 2, '.', '')) ?>" style="width:80px;">
+              <select class="gestion-input" name="nouvelle_categorie">
+                <option value="plats" <?= $plat['categorie'] === 'plats' ? 'selected' : '' ?>>Plat</option>
+                <option value="tartes_flambees" <?= $plat['categorie'] === 'tartes_flambees' ? 'selected' : '' ?>>Tarte flambée</option>
+                <option value="desserts" <?= $plat['categorie'] === 'desserts' ? 'selected' : '' ?>>Dessert</option>
+              </select>
+              <input class="gestion-input" type="number" name="nouvel_ordre" value="<?= (int)$plat['ordre'] ?>" style="width:60px;">
               <input type="hidden" name="id" value="<?= $plat['id'] ?>">
-
               <button class="mini-btn" type="submit" name="action" value="modifier" title="Modifier">&#9998;</button>
-
               <?php if ($plat['visible']): ?>
-                <button class="mini-btn hide" type="submit" name="action" value="masquer" title="Masquer">&#128683;</button>
+                <button class="mini-btn hide" type="button" name="action" value="masquer" title="Masquer">&#128683;</button>
               <?php else: ?>
-                <button class="mini-btn show" type="submit" name="action" value="afficher" title="Afficher">&#128065;</button>
+                <button class="mini-btn show" type="button" name="action" value="afficher" title="Afficher">&#128065;</button>
               <?php endif; ?>
-
               <button class="mini-btn delete" type="submit" name="action" value="supprimer" title="Supprimer">&#10006;</button>
             </form>
           </td>
@@ -224,6 +207,8 @@ $pdo = null;
   <script src="../js/global.js"></script>
   <script src="../js/partials.js"></script>
   <script src="../js/admin-gestion-suggestions.js"></script>
+  <script src="../js/admin-gestion-carte.js"></script>
+
   </main>
   <?php //require_once("../partials/footer.php"); ?> 
 
